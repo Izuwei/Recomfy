@@ -12,248 +12,51 @@ import {
 
 import colors from "../constants/colors";
 
-/**Dummy */
-const fetchFilms = () => {
-  return [
-    {
-      key: "1",
-      text: "Film 1",
-      uri: "https://picsum.photos/id/1/200",
-    },
-    {
-      key: "2",
-      text: "Film 2",
-      uri: "https://picsum.photos/id/10/200",
-    },
+const ListButton = ({ onPress }) => (
+  <TouchableOpacity onPress={onPress}>
+    <Image
+      source={require("../assets/icons/list-icon.png")}
+      resizeMode="contain"
+      style={{
+        width: 23,
+        height: 23,
+        marginLeft: 5,
+        tintColor: colors.red,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    />
+  </TouchableOpacity>
+);
 
+const HomeScreen = ({ navigation, route }) => {
+  const SECTIONS = [
     {
-      key: "3",
-      text: "Film 3",
-      uri: "https://picsum.photos/id/1002/200",
+      title: "Films",
+      data: route.params.films,
     },
     {
-      key: "4",
-      text: "Film 4",
-      uri: "https://picsum.photos/id/1006/200",
+      title: "Serials",
+      data: route.params.serials,
     },
     {
-      key: "5",
-      text: "Film 5",
-      uri: "https://picsum.photos/id/1008/200",
+      title: "Books",
+      data: route.params.books,
     },
     {
-      key: "6",
-      text: "Film 6",
-      uri: "https://picsum.photos/id/1/200",
+      title: "Games",
+      data: route.params.games,
     },
     {
-      key: "7",
-      text: "Film 7",
-      uri: "https://picsum.photos/id/10/200",
-    },
-
-    {
-      key: "8",
-      text: "Film 8",
-      uri: "https://picsum.photos/id/1002/200",
+      title: "Anime",
+      data: route.params.anime,
     },
     {
-      key: "9",
-      text: "Film 9",
-      uri: "https://picsum.photos/id/1006/200",
-    },
-    {
-      key: "10",
-      text: "Film 10",
-      uri: "https://picsum.photos/id/1008/200",
+      title: "Manga",
+      data: route.params.manga,
     },
   ];
-};
 
-/**Dummy */
-const fetchSerials = () => {
-  return [
-    {
-      key: "1",
-      text: "Serial 1",
-      uri: "https://picsum.photos/id/1011/200",
-    },
-    {
-      key: "2",
-      text: "Serial 2",
-      uri: "https://picsum.photos/id/1012/200",
-    },
-    {
-      key: "3",
-      text: "Serial 3",
-      uri: "https://picsum.photos/id/1013/200",
-    },
-    {
-      key: "4",
-      text: "Serial 4",
-      uri: "https://picsum.photos/id/1015/200",
-    },
-    {
-      key: "5",
-      text: "Serial 5",
-      uri: "https://picsum.photos/id/1016/200",
-    },
-  ];
-};
-
-/**Dummy */
-const fetchBooks = () => {
-  return [
-    {
-      key: "1",
-      text: "Book 1",
-      uri: "https://picsum.photos/id/1020/200",
-    },
-    {
-      key: "2",
-      text: "Book 2",
-      uri: "https://picsum.photos/id/1024/200",
-    },
-    {
-      key: "3",
-      text: "Book 3",
-      uri: "https://picsum.photos/id/1027/200",
-    },
-    {
-      key: "4",
-      text: "Book 4",
-      uri: "https://picsum.photos/id/1035/200",
-    },
-    {
-      key: "5",
-      text: "Book 5",
-      uri: "https://picsum.photos/id/1038/200",
-    },
-  ];
-};
-
-/**Dummy */
-const fetchGames = () => {
-  return [
-    {
-      key: "1",
-      text: "Game 1",
-      uri: "https://picsum.photos/id/1/200",
-    },
-    {
-      key: "2",
-      text: "Game 2",
-      uri: "https://picsum.photos/id/10/200",
-    },
-
-    {
-      key: "3",
-      text: "Game 3",
-      uri: "https://picsum.photos/id/1002/200",
-    },
-    {
-      key: "4",
-      text: "Game 4",
-      uri: "https://picsum.photos/id/1006/200",
-    },
-    {
-      key: "5",
-      text: "Game 5",
-      uri: "https://picsum.photos/id/1008/200",
-    },
-  ];
-};
-
-/**Dummy */
-const fetchAnime = () => {
-  return [
-    {
-      key: "1",
-      text: "Anime 1",
-      uri: "https://picsum.photos/id/1011/200",
-    },
-    {
-      key: "2",
-      text: "Anime 2",
-      uri: "https://picsum.photos/id/1012/200",
-    },
-    {
-      key: "3",
-      text: "Anime 3",
-      uri: "https://picsum.photos/id/1013/200",
-    },
-    {
-      key: "4",
-      text: "Anime 4",
-      uri: "https://picsum.photos/id/1015/200",
-    },
-    {
-      key: "5",
-      text: "Anime 5",
-      uri: "https://picsum.photos/id/1016/200",
-    },
-  ];
-};
-
-/**Dummy */
-const fetchManga = () => {
-  return [
-    {
-      key: "1",
-      text: "Manga 1",
-      uri: "https://picsum.photos/id/1020/200",
-    },
-    {
-      key: "2",
-      text: "Manga 2",
-      uri: "https://picsum.photos/id/1024/200",
-    },
-    {
-      key: "3",
-      text: "Manga 3",
-      uri: "https://picsum.photos/id/1027/200",
-    },
-    {
-      key: "4",
-      text: "Manga 4",
-      uri: "https://picsum.photos/id/1035/200",
-    },
-    {
-      key: "5",
-      text: "Manga 5",
-      uri: "https://picsum.photos/id/1038/200",
-    },
-  ];
-};
-
-const SECTIONS = [
-  {
-    title: "Films",
-    data: fetchFilms(),
-  },
-  {
-    title: "Serials",
-    data: fetchSerials(),
-  },
-  {
-    title: "Books",
-    data: fetchBooks(),
-  },
-  {
-    title: "Games",
-    data: fetchGames(),
-  },
-  {
-    title: "Anime",
-    data: fetchAnime(),
-  },
-  {
-    title: "Manga",
-    data: fetchManga(),
-  },
-];
-
-const HomeScreen = ({ navigation }) => {
   const ListItem = ({ item }) => {
     return (
       <TouchableOpacity
@@ -293,18 +96,16 @@ const HomeScreen = ({ navigation }) => {
                   alignItems: "center",
                 }}
               >
-                <Text
-                  style={styles.sectionHeader}
+                <Text style={styles.sectionHeader}>{section.title}</Text>
+                <View style={styles.line} />
+                <ListButton
                   onPress={() =>
-                    navigation.navigate("TileScreen", {
-                      title: section.title,
-                      data: section.data,
+                    navigation.navigate("GalleryScreen", {
+                      data: route.params,
+                      initialRouteName: section.title,
                     })
                   }
-                >
-                  {section.title}
-                </Text>
-                <View style={styles.line} />
+                />
               </View>
 
               <FlatList
@@ -338,6 +139,14 @@ const styles = StyleSheet.create({
   },
   item: {
     margin: 5,
+    elevation: 3,
+    shadowColor: "black",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowRadius: 2,
+    shadowOpacity: 0.2,
   },
   itemPhoto: {
     width: 100,

@@ -5,24 +5,25 @@ import colors from "../constants/colors";
 import HomeScreen from "../screens/HomeScreen";
 import GalleryScreen from "../screens/GalleryScreen";
 import SearchScreen from "../screens/SearchScreen";
-import TileScreen from "../screens/TileScreen";
 import ItemDetailScreen from "../screens/ItemDetailScreen";
 
 const Stack = createStackNavigator();
 
-export const HomeScreenNavigator = () => {
+export const HomeScreenNavigator = (data) => {
   return (
     <Stack.Navigator
       screenOptions={{
         headerTitleStyle: {
           color: colors.white,
         },
+        headerTitleAlign: "center",
         headerTintColor: colors.white,
       }}
     >
       <Stack.Screen
         name="HomeScreen"
         component={HomeScreen}
+        initialParams={data.route.params}
         options={() => ({
           title: "Home",
           headerStyle: {
@@ -31,12 +32,12 @@ export const HomeScreenNavigator = () => {
         })}
       />
       <Stack.Screen
-        name="TileScreen"
-        component={TileScreen}
-        options={({ route }) => ({
-          title: route.params.title,
+        name="GalleryScreen"
+        component={GalleryScreen}
+        options={() => ({
+          title: "Recommendations",
           headerStyle: {
-            backgroundColor: colors.orange,
+            backgroundColor: colors.red,
           },
         })}
       />
@@ -46,7 +47,7 @@ export const HomeScreenNavigator = () => {
         options={({ route }) => ({
           title: route.params.title,
           headerStyle: {
-            backgroundColor: colors.blue,
+            backgroundColor: colors.red,
           },
         })}
       />
@@ -54,23 +55,35 @@ export const HomeScreenNavigator = () => {
   );
 };
 
-export const GalleryScreenNavigator = () => {
+export const GalleryScreenNavigator = (data) => {
   return (
     <Stack.Navigator
       screenOptions={{
         headerTitleStyle: {
           color: colors.white,
         },
+        headerTitleAlign: "center",
         headerTintColor: colors.white,
       }}
     >
       <Stack.Screen
         name="GalleryScreen"
         component={GalleryScreen}
+        initialParams={{ initialRouteName: "Films", data: data.route.params }}
         options={() => ({
-          title: "Gallery",
+          title: "Favorites",
           headerStyle: {
-            backgroundColor: colors.blue,
+            backgroundColor: colors.red,
+          },
+        })}
+      />
+      <Stack.Screen
+        name="ItemDetailScreen"
+        component={ItemDetailScreen}
+        options={({ route }) => ({
+          title: route.params.title,
+          headerStyle: {
+            backgroundColor: colors.red,
           },
         })}
       />
@@ -85,6 +98,7 @@ export const SearchScreenNavigator = () => {
         headerTitleStyle: {
           color: colors.white,
         },
+        headerTitleAlign: "center",
         headerTintColor: colors.white,
       }}
     >
@@ -94,7 +108,7 @@ export const SearchScreenNavigator = () => {
         options={() => ({
           title: "Search",
           headerStyle: {
-            backgroundColor: colors.blue,
+            backgroundColor: colors.red,
           },
         })}
       />

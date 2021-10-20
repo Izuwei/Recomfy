@@ -10,11 +10,11 @@ import { FlatGrid } from "react-native-super-grid";
 
 import colors from "../constants/colors";
 
-const TileScreen = ({ navigation, route }) => {
+const TileGrid = ({ navigation, data }) => {
   return (
     <FlatGrid
-      itemDimension={130}
-      data={route.params.data}
+      itemDimension={100}
+      data={data}
       style={styles.gridView}
       // staticDimension={300}
       // fixed
@@ -53,6 +53,14 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     borderRadius: 5,
     height: 150,
+    elevation: 3,
+    shadowColor: "black",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowRadius: 2,
+    shadowOpacity: 0.2,
   },
   titleBG: {
     backgroundColor: "rgba(0, 0, 0, .8)",
@@ -62,10 +70,10 @@ const styles = StyleSheet.create({
   },
   itemName: {
     fontSize: 16,
-    margin: 5,
+    margin: 4,
     color: colors.white,
     fontWeight: "600",
   },
 });
 
-export default TileScreen;
+export default TileGrid;

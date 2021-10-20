@@ -7,7 +7,7 @@ import {
   HomeScreenNavigator,
   SearchScreenNavigator,
   GalleryScreenNavigator,
-} from "./Navigation";
+} from "./StackNavigation";
 
 const Tab = createBottomTabNavigator();
 
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const MyTabBarButton = ({ children, onPress }) => (
+const BigButton = ({ children, onPress }) => (
   <TouchableOpacity
     onPress={onPress}
     style={{
@@ -74,12 +74,13 @@ const screenOptionStyle = {
   ],
 };
 
-const NavBar = (props) => {
+const NavBar = ({ recommendations, favorites }) => {
   return (
     <Tab.Navigator initialRouteName="Home" screenOptions={screenOptionStyle}>
       <Tab.Screen
         name="Home"
         component={HomeScreenNavigator}
+        initialParams={recommendations}
         options={{
           tabBarIcon: ({ focused }) => (
             <View
@@ -125,12 +126,13 @@ const NavBar = (props) => {
               }}
             />
           ),
-          tabBarButton: (props) => <MyTabBarButton {...props} />,
+          tabBarButton: (props) => <BigButton {...props} />,
         }}
       />
       <Tab.Screen
         name="Gallery"
         component={GalleryScreenNavigator}
+        initialParams={favorites}
         options={{
           tabBarIcon: ({ focused }) => (
             <View
@@ -141,7 +143,7 @@ const NavBar = (props) => {
               }}
             >
               <Image
-                source={require("../assets/icons/gallery-icon.png")}
+                source={require("../assets/icons/favorites-icon.png")}
                 resizeMode="contain"
                 style={{
                   width: 25,
@@ -155,7 +157,7 @@ const NavBar = (props) => {
                   fontSize: 12,
                 }}
               >
-                GALLERY
+                FAVORITES
               </Text>
             </View>
           ),
