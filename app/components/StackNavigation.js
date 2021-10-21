@@ -45,7 +45,7 @@ export const HomeScreenNavigator = (data) => {
         name="ItemDetailScreen"
         component={ItemDetailScreen}
         options={({ route }) => ({
-          title: route.params.title,
+          title: "Details",
           headerStyle: {
             backgroundColor: colors.red,
           },
@@ -81,7 +81,7 @@ export const GalleryScreenNavigator = (data) => {
         name="ItemDetailScreen"
         component={ItemDetailScreen}
         options={({ route }) => ({
-          title: route.params.title,
+          title: "Details",
           headerStyle: {
             backgroundColor: colors.red,
           },

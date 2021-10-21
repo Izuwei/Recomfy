@@ -11,6 +11,8 @@ import {
 } from "react-native";
 
 import colors from "../constants/colors";
+import geometry from "../constants/geometry";
+import { HorizListItem as ListItem } from "../components/HorizListItem";
 
 const ListButton = ({ onPress }) => (
   <TouchableOpacity onPress={onPress}>
@@ -57,29 +59,6 @@ const HomeScreen = ({ navigation, route }) => {
     },
   ];
 
-  const ListItem = ({ item }) => {
-    return (
-      <TouchableOpacity
-        onPress={() =>
-          navigation.navigate("ItemDetailScreen", {
-            title: item.text,
-            data: item,
-          })
-        }
-      >
-        <View style={styles.item}>
-          <Image
-            source={{
-              uri: item.uri,
-            }}
-            style={styles.itemPhoto}
-            resizeMode="cover"
-          />
-          <Text style={styles.itemText}>{item.text}</Text>
-        </View>
-      </TouchableOpacity>
-    );
-  };
   return (
     <View style={styles.container}>
       <SafeAreaView style={{ flex: 1 }}>
@@ -87,6 +66,9 @@ const HomeScreen = ({ navigation, route }) => {
           contentContainerStyle={{ paddingHorizontal: 10 }}
           stickySectionHeadersEnabled={false}
           sections={SECTIONS}
+          ListFooterComponent={
+            <View style={{ height: geometry.navBarHeight }} />
+          }
           renderSectionHeader={({ section }) => (
             <>
               <View
@@ -111,7 +93,9 @@ const HomeScreen = ({ navigation, route }) => {
               <FlatList
                 horizontal
                 data={section.data}
-                renderItem={({ item }) => <ListItem item={item} />}
+                renderItem={({ item }) => (
+                  <ListItem navigation={navigation} item={item} />
+                )}
                 showsHorizontalScrollIndicator={false}
               />
             </>
@@ -137,29 +121,9 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     textAlign: "center",
   },
-  item: {
-    margin: 5,
-    elevation: 3,
-    shadowColor: "black",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowRadius: 2,
-    shadowOpacity: 0.2,
-  },
-  itemPhoto: {
-    width: 100,
-    height: 130,
-    borderRadius: 5,
-  },
-  itemText: {
-    color: colors.gray,
-    marginTop: 5,
-  },
   line: {
     flex: 1,
-    height: 1,
+    height: 1.5,
     backgroundColor: colors.red,
   },
 });

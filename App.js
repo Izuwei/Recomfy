@@ -10,55 +10,85 @@ const fetchFilms = () => {
   return [
     {
       key: "1",
-      text: "Film 1",
-      uri: "https://picsum.photos/id/1/200",
+      title: "Film 1",
+      image: "https://picsum.photos/id/1/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "2",
-      text: "Film 2",
-      uri: "https://picsum.photos/id/10/200",
+      title: "Film 2",
+      image: "https://picsum.photos/id/10/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
 
     {
       key: "3",
-      text: "Film 3",
-      uri: "https://picsum.photos/id/1002/200",
+      title: "Film 3",
+      image: "https://picsum.photos/id/1002/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "4",
-      text: "Film 4",
-      uri: "https://picsum.photos/id/1006/200",
+      title: "Film 4",
+      image: "https://picsum.photos/id/1006/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "5",
-      text: "Film 5",
-      uri: "https://picsum.photos/id/1008/200",
+      title: "Film 5",
+      image: "https://picsum.photos/id/1008/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "6",
-      text: "Film 6",
-      uri: "https://picsum.photos/id/1/200",
+      title: "Film 6",
+      image: "https://picsum.photos/id/1/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "7",
-      text: "Film 7",
-      uri: "https://picsum.photos/id/10/200",
+      title: "Film 7",
+      image: "https://picsum.photos/id/10/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
 
     {
       key: "8",
-      text: "Film 8",
-      uri: "https://picsum.photos/id/1002/200",
+      title: "Film 8",
+      image: "https://picsum.photos/id/1002/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "9",
-      text: "Film 9",
-      uri: "https://picsum.photos/id/1006/200",
+      title: "Film 9",
+      image: "https://picsum.photos/id/1006/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "10",
-      text: "Film 10",
-      uri: "https://picsum.photos/id/1008/200",
+      title: "Film 10",
+      image: "https://picsum.photos/id/1008/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
   ];
 };
@@ -68,28 +98,43 @@ const fetchSerials = () => {
   return [
     {
       key: "1",
-      text: "Serial 1",
-      uri: "https://picsum.photos/id/1011/200",
+      title: "Serial 1",
+      image: "https://picsum.photos/id/1011/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "2",
-      text: "Serial 2",
-      uri: "https://picsum.photos/id/1012/200",
+      title: "Serial 2",
+      image: "https://picsum.photos/id/1012/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "3",
-      text: "Serial 3",
-      uri: "https://picsum.photos/id/1013/200",
+      title: "Serial 3",
+      image: "https://picsum.photos/id/1013/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "4",
-      text: "Serial 4",
-      uri: "https://picsum.photos/id/1015/200",
+      title: "Serial 4",
+      image: "https://picsum.photos/id/1015/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "5",
-      text: "Serial 5",
-      uri: "https://picsum.photos/id/1016/200",
+      title: "Serial 5",
+      image: "https://picsum.photos/id/1016/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
   ];
 };
@@ -99,28 +144,43 @@ const fetchBooks = () => {
   return [
     {
       key: "1",
-      text: "Book 1",
-      uri: "https://picsum.photos/id/1020/200",
+      title: "Book 1",
+      image: "https://picsum.photos/id/1020/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "2",
-      text: "Book 2",
-      uri: "https://picsum.photos/id/1024/200",
+      title: "Book 2",
+      image: "https://picsum.photos/id/1024/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "3",
-      text: "Book 3",
-      uri: "https://picsum.photos/id/1027/200",
+      title: "Book 3",
+      image: "https://picsum.photos/id/1027/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "4",
-      text: "Book 4",
-      uri: "https://picsum.photos/id/1035/200",
+      title: "Book 4",
+      image: "https://picsum.photos/id/1035/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "5",
-      text: "Book 5",
-      uri: "https://picsum.photos/id/1038/200",
+      title: "Book 5",
+      image: "https://picsum.photos/id/1038/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
   ];
 };
@@ -130,29 +190,44 @@ const fetchGames = () => {
   return [
     {
       key: "1",
-      text: "Game 1",
-      uri: "https://picsum.photos/id/1/200",
+      title: "Game 1",
+      image: "https://picsum.photos/id/1/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "2",
-      text: "Game 2",
-      uri: "https://picsum.photos/id/10/200",
+      title: "Game 2",
+      image: "https://picsum.photos/id/10/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
 
     {
       key: "3",
-      text: "Game 3",
-      uri: "https://picsum.photos/id/1002/200",
+      title: "Game 3",
+      image: "https://picsum.photos/id/1002/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "4",
-      text: "Game 4",
-      uri: "https://picsum.photos/id/1006/200",
+      title: "Game 4",
+      image: "https://picsum.photos/id/1006/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "5",
-      text: "Game 5",
-      uri: "https://picsum.photos/id/1008/200",
+      title: "Game 5",
+      image: "https://picsum.photos/id/1008/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
   ];
 };
@@ -162,28 +237,43 @@ const fetchAnime = () => {
   return [
     {
       key: "1",
-      text: "Anime 1",
-      uri: "https://picsum.photos/id/1011/200",
+      title: "Anime 1",
+      image: "https://picsum.photos/id/1011/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "2",
-      text: "Anime 2",
-      uri: "https://picsum.photos/id/1012/200",
+      title: "Anime 2",
+      image: "https://picsum.photos/id/1012/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "3",
-      text: "Anime 3",
-      uri: "https://picsum.photos/id/1013/200",
+      title: "Anime 3",
+      image: "https://picsum.photos/id/1013/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "4",
-      text: "Anime 4",
-      uri: "https://picsum.photos/id/1015/200",
+      title: "Anime 4",
+      image: "https://picsum.photos/id/1015/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "5",
-      text: "Anime 5",
-      uri: "https://picsum.photos/id/1016/200",
+      title: "Anime 5",
+      image: "https://picsum.photos/id/1016/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
   ];
 };
@@ -193,28 +283,43 @@ const fetchManga = () => {
   return [
     {
       key: "1",
-      text: "Manga 1",
-      uri: "https://picsum.photos/id/1020/200",
+      title: "Manga 1",
+      image: "https://picsum.photos/id/1020/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "2",
-      text: "Manga 2",
-      uri: "https://picsum.photos/id/1024/200",
+      title: "Manga 2",
+      image: "https://picsum.photos/id/1024/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "3",
-      text: "Manga 3",
-      uri: "https://picsum.photos/id/1027/200",
+      title: "Manga 3",
+      image: "https://picsum.photos/id/1027/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "4",
-      text: "Manga 4",
-      uri: "https://picsum.photos/id/1035/200",
+      title: "Manga 4",
+      image: "https://picsum.photos/id/1035/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
     {
       key: "5",
-      text: "Manga 5",
-      uri: "https://picsum.photos/id/1038/200",
+      title: "Manga 5",
+      image: "https://picsum.photos/id/1038/200",
+      description:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+      rating: "8/10",
     },
   ];
 };
@@ -241,13 +346,19 @@ export default function App() {
           manga: [
             {
               key: "4",
-              text: "Manga 4",
-              uri: "https://picsum.photos/id/1035/200",
+              title: "Manga 4",
+              image: "https://picsum.photos/id/1035/200",
+              description:
+                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+              rating: "8/10",
             },
             {
               key: "5",
-              text: "Manga 5",
-              uri: "https://picsum.photos/id/1038/200",
+              title: "Manga 5",
+              image: "https://picsum.photos/id/1038/200",
+              description:
+                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
+              rating: "8/10",
             },
           ],
         }}

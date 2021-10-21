@@ -9,6 +9,7 @@ import {
 import { FlatGrid } from "react-native-super-grid";
 
 import colors from "../constants/colors";
+import geometry from "../constants/geometry";
 
 const TileGrid = ({ navigation, data }) => {
   return (
@@ -16,6 +17,7 @@ const TileGrid = ({ navigation, data }) => {
       itemDimension={100}
       data={data}
       style={styles.gridView}
+      ListFooterComponent={<View style={{ height: geometry.navBarHeight }} />}
       // staticDimension={300}
       // fixed
       spacing={10}
@@ -23,19 +25,19 @@ const TileGrid = ({ navigation, data }) => {
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("ItemDetailScreen", {
-              title: item.text,
+              title: item.title,
               data: item,
             })
           }
         >
           <ImageBackground
-            source={{ uri: item.uri }}
+            source={{ uri: item.image }}
             style={styles.itemContainer}
             imageStyle={{ borderRadius: 5 }}
             resizeMode="cover"
           >
             <View style={styles.titleBG}>
-              <Text style={styles.itemName}>{item.text}</Text>
+              <Text style={styles.itemName}>{item.title}</Text>
             </View>
           </ImageBackground>
         </TouchableOpacity>
