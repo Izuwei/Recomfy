@@ -112,6 +112,16 @@ export const SearchScreenNavigator = () => {
           },
         })}
       />
+      <Stack.Screen
+        name="ItemDetailScreen"
+        component={ItemDetailScreen}
+        options={({ route }) => ({
+          title: "Details",
+          headerStyle: {
+            backgroundColor: colors.red,
+          },
+        })}
+      />
     </Stack.Navigator>
   );
 };
