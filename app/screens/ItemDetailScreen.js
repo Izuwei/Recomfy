@@ -48,40 +48,44 @@ const fetchSimilarContent = () => {
   return [
     {
       key: "1",
-      title: "Anime 1",
-      image: "https://picsum.photos/id/1011/200",
+      title: "Ice Age 2",
+      image:
+        "https://lumiere-a.akamaihd.net/v1/images/p_iceagethemeltdown_21384_0b4f5877.jpeg",
       description:
         "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
       rating: "8/10",
     },
     {
       key: "2",
-      title: "Anime 2",
-      image: "https://picsum.photos/id/1012/200",
+      title: "Ice Age 3",
+      image:
+        "https://cdn.knihcentrum.cz/6849979_ice-age-3-dawn-of-the-dinosaurs-cd.jpg",
       description:
         "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
       rating: "8/10",
     },
     {
       key: "3",
-      title: "Anime 3",
-      image: "https://picsum.photos/id/1013/200",
+      title: "Ice Age 4",
+      image:
+        "https://smartcdkeys.com/image/data/products/ice-age-4-continental-drift-arctic-games/cover/ice-age-4-continental-drift-arctic-games-smartcdkeys-cheap-cd-key-cover.jpg",
       description:
         "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
       rating: "8/10",
     },
     {
       key: "4",
-      title: "Anime 4",
-      image: "https://picsum.photos/id/1015/200",
+      title: "Ice Age 5",
+      image:
+        "https://m.media-amazon.com/images/M/MV5BMzFjYWM5NzgtMGIwMi00MmE3LWE3NTgtNmIwMmRkNmFmYzJkXkEyXkFqcGdeQXVyNDQ2MTMzODA@._V1_.jpg",
       description:
         "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
       rating: "8/10",
     },
     {
       key: "5",
-      title: "Anime 5",
-      image: "https://picsum.photos/id/1016/200",
+      title: "Finding Nemo",
+      image: "https://filmtoro.cz/img/film/zjqInUwldOBa0q07fOyohYCWxWX.jpg",
       description:
         "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
       rating: "8/10",
