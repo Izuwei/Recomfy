@@ -110,13 +110,13 @@ const SearchScreen = ({ navigation, route }) => {
             flex: 0.75,
             alignItems: "center",
             borderBottomWidth: 1,
-            padding: 2,
+            margin: 2,
           }}
         >
           <Picker
             selectedValue={category}
             onValueChange={(itemValue, itemIndex) => setCategory(itemValue)}
-            style={{ width: "100%", textAlign: "center" }}
+            style={{ width: "100%", height: 30, textAlign: "center" }}
           >
             <Picker.Item label="Films" value="films" />
             <Picker.Item label="Serials" value="serials" />
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    padding: 7,
+    margin: 10,
   },
   row: {
     flexDirection: "row",
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     height: 30,
     width: "100%",
-    margin: 12,
+    margin: 5,
     borderBottomWidth: 1,
     padding: 5,
   },

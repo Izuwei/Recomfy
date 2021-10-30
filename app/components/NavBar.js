@@ -47,18 +47,9 @@ const BigButton = ({ children, onPress }) => (
   </TouchableOpacity>
 );
 
-const screenOptionStyle = {
+const screenOptions = {
   headerShown: false, // Header disabled
-  headerTitleAlign: "center",
   tabBarShowLabel: false,
-  headerTitleStyle: {
-    fontSize: 25,
-  },
-  headerStyle: {
-    backgroundColor: colors.red,
-  },
-  headerTintColor: colors.white,
-  headerBackTitle: "",
   tabBarStyle: [
     {
       backgroundColor: colors.lightGray,
@@ -76,11 +67,17 @@ const screenOptionStyle = {
 
 const NavBar = ({ recommendations, favorites }) => {
   return (
-    <Tab.Navigator initialRouteName="Home" screenOptions={screenOptionStyle}>
+    <Tab.Navigator initialRouteName="Home" screenOptions={screenOptions}>
       <Tab.Screen
         name="Home"
         component={HomeScreenNavigator}
         initialParams={recommendations}
+        listeners={({ navigation }) => ({
+          tabPress: (e) => {
+            e.preventDefault();
+            navigation.navigate("Home", { screen: "HomeScreen" });
+          },
+        })}
         options={{
           tabBarIcon: ({ focused }) => (
             <View
@@ -114,6 +111,12 @@ const NavBar = ({ recommendations, favorites }) => {
       <Tab.Screen
         name="Search"
         component={SearchScreenNavigator}
+        listeners={({ navigation }) => ({
+          tabPress: (e) => {
+            e.preventDefault();
+            navigation.navigate("Search", { screen: "SearchScreen" });
+          },
+        })}
         options={{
           tabBarIcon: () => (
             <Image
@@ -133,6 +136,12 @@ const NavBar = ({ recommendations, favorites }) => {
         name="Gallery"
         component={GalleryScreenNavigator}
         initialParams={favorites}
+        listeners={({ navigation }) => ({
+          tabPress: (e) => {
+            e.preventDefault();
+            navigation.navigate("Gallery", { screen: "GalleryScreen" });
+          },
+        })}
         options={{
           tabBarIcon: ({ focused }) => (
             <View
