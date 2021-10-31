@@ -59,7 +59,7 @@ const SettingsScreen = () => {
               >
                 <Picker.Item label="English" value="en" />
                 <Picker.Item label="Čeština" value="cz" />
-                <Picker.Item label="Turkish" value="tr" />
+                <Picker.Item label="Türk" value="tr" />
               </Picker>
             </View>
           </View>
