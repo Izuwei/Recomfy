@@ -1,11 +1,11 @@
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
 
-import languageDetector from "./LangDetector";
+import languageDetector from "./langDetector";
 
-import english from "../constants/lang/English.json";
-import czech from "../constants/lang/Czech.json";
-import turkish from "../constants/lang/Turkish.json";
+import english from "../constants/lang/english.json";
+import czech from "../constants/lang/czech.json";
+import turkish from "../constants/lang/turkish.json";
 
 /** i18n Config */
 i18next
