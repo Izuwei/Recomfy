@@ -8,6 +8,7 @@ import {
   Image,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
+import { useTranslation } from "react-i18next";
 
 import colors from "../constants/colors";
 import TileGrid from "../components/TileGrid";
@@ -39,6 +40,8 @@ const SearchButton = ({ onPress }) => (
 );
 
 const SearchScreen = ({ navigation, route }) => {
+  const { t } = useTranslation();
+
   const [titleName, setTitleName] = useState("");
   const [category, setCategory] = useState("films");
 
@@ -91,19 +94,19 @@ const SearchScreen = ({ navigation, route }) => {
     <View style={styles.container}>
       <View style={[styles.row, { marginBottom: 10 }]}>
         <View style={{ flex: 0.25 }}>
-          <Text style={styles.label}>Name:</Text>
+          <Text style={styles.label}>{t("Name") + ":"}</Text>
         </View>
         <View style={{ flex: 0.75, alignItems: "center" }}>
           <TextInput
             style={styles.input}
             onChange={setTitleName}
-            placeholder="Title name"
+            placeholder={t("TitleName")}
           />
         </View>
       </View>
       <View style={[styles.row, { marginBottom: 10 }]}>
         <View style={{ flex: 0.25 }}>
-          <Text style={styles.label}>Category:</Text>
+          <Text style={styles.label}>{t("Category") + ":"}</Text>
         </View>
         <View
           style={{
@@ -118,12 +121,12 @@ const SearchScreen = ({ navigation, route }) => {
             onValueChange={(itemValue, itemIndex) => setCategory(itemValue)}
             style={{ width: "100%", height: 30, textAlign: "center" }}
           >
-            <Picker.Item label="Films" value="films" />
-            <Picker.Item label="Serials" value="serials" />
-            <Picker.Item label="Books" value="books" />
-            <Picker.Item label="Games" value="games" />
-            <Picker.Item label="Anime" value="anime" />
-            <Picker.Item label="Manga" value="manga" />
+            <Picker.Item label={t("Films")} value="films" />
+            <Picker.Item label={t("Serials")} value="serials" />
+            <Picker.Item label={t("Books")} value="books" />
+            <Picker.Item label={t("Games")} value="games" />
+            <Picker.Item label={t("Anime")} value="anime" />
+            <Picker.Item label={t("Manga")} value="manga" />
           </Picker>
         </View>
       </View>

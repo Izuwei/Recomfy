@@ -1,4 +1,5 @@
 import React from "react";
+import { FlatGrid } from "react-native-super-grid";
 import {
   Text,
   View,
@@ -6,7 +7,6 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from "react-native";
-import { FlatGrid } from "react-native-super-grid";
 
 import colors from "../constants/colors";
 import geometry from "../constants/geometry";

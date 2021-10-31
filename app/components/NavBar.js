@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
@@ -66,6 +67,8 @@ const screenOptions = {
 };
 
 const NavBar = ({ recommendations, favorites }) => {
+  const { t } = useTranslation();
+
   return (
     <Tab.Navigator initialRouteName="Home" screenOptions={screenOptions}>
       <Tab.Screen
@@ -102,7 +105,7 @@ const NavBar = ({ recommendations, favorites }) => {
                   fontSize: 12,
                 }}
               >
-                HOME
+                {t("Home").toUpperCase()}
               </Text>
             </View>
           ),
@@ -166,7 +169,7 @@ const NavBar = ({ recommendations, favorites }) => {
                   fontSize: 12,
                 }}
               >
-                FAVORITES
+                {t("Favorites").toUpperCase()}
               </Text>
             </View>
           ),

@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   StyleSheet,
   Text,
@@ -32,6 +33,8 @@ const ListButton = ({ onPress }) => (
 );
 
 const HomeScreen = ({ navigation, route }) => {
+  const { t } = useTranslation();
+
   const SECTIONS = [
     {
       title: "Films",
@@ -78,8 +81,9 @@ const HomeScreen = ({ navigation, route }) => {
                   alignItems: "center",
                 }}
               >
-                <Text style={styles.sectionHeader}>{section.title}</Text>
-                <View style={styles.line} />
+                <View style={[styles.line, { flex: 0.05 }]} />
+                <Text style={styles.sectionHeader}>{t(section.title)}</Text>
+                <View style={[styles.line, { flex: 0.95 }]} />
                 <ListButton
                   onPress={() =>
                     navigation.navigate("GalleryScreen", {
@@ -114,6 +118,7 @@ const styles = StyleSheet.create({
   },
   sectionHeader: {
     marginRight: 10,
+    marginLeft: 10,
     fontWeight: "800",
     fontSize: 18,
     fontWeight: "bold",
@@ -122,7 +127,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   line: {
-    flex: 1,
     height: 1.5,
     backgroundColor: colors.red,
   },

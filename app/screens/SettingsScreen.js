@@ -1,5 +1,7 @@
 import { Picker } from "@react-native-picker/picker";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   SafeAreaView,
   ScrollView,
@@ -12,7 +14,8 @@ import {
 import colors from "../constants/colors";
 
 const SettingsScreen = () => {
-  const [language, setLanguage] = useState("eng");
+  const { t, i18n } = useTranslation();
+
   const [theme, setTheme] = useState("light");
 
   const [enabledFilms, setEnabledFilms] = useState(true);
@@ -21,6 +24,15 @@ const SettingsScreen = () => {
   const [enabledGames, setEnabledGames] = useState(true);
   const [enabledAnime, setEnabledAnime] = useState(true);
   const [enabledManga, setEnabledManga] = useState(true);
+
+  const storeLang = async (value) => {
+    i18n.changeLanguage(value);
+    try {
+      await AsyncStorage.setItem("@i18n_lang", value);
+    } catch (e) {
+      console.log("Unable to store language!");
+    }
+  };
 
   return (
     <SafeAreaView>
@@ -32,22 +44,22 @@ const SettingsScreen = () => {
           }}
         >
           <View style={[styles.line, { flex: 0.05 }]} />
-          <Text style={styles.sectionHeader}>General</Text>
+          <Text style={styles.sectionHeader}>{t("General")}</Text>
           <View style={[styles.line, { flex: 0.95 }]} />
         </View>
 
         <View style={styles.section}>
           <View style={styles.option}>
-            <Text style={styles.caption}>Language</Text>
+            <Text style={styles.caption}>{t("Language")}</Text>
             <View style={styles.value}>
               <Picker
-                selectedValue={language}
-                onValueChange={(itemValue, itemIndex) => setLanguage(itemValue)}
+                selectedValue={i18n.language}
+                onValueChange={(itemValue, itemIndex) => storeLang(itemValue)}
                 style={{ width: "80%", textAlign: "center" }}
               >
-                <Picker.Item label="English" value="cze" />
-                <Picker.Item label="Czech" value="eng" />
-                <Picker.Item label="Turkey" value="tur" />
+                <Picker.Item label="English" value="en" />
+                <Picker.Item label="Čeština" value="cz" />
+                <Picker.Item label="Turkish" value="tr" />
               </Picker>
             </View>
           </View>
@@ -55,15 +67,15 @@ const SettingsScreen = () => {
           <View style={styles.divider} />
 
           <View style={styles.option}>
-            <Text style={styles.caption}>Theme</Text>
+            <Text style={styles.caption}>{t("Theme")}</Text>
             <View style={styles.value}>
               <Picker
                 selectedValue={theme}
                 onValueChange={(itemValue, itemIndex) => setTheme(itemValue)}
                 style={{ width: "80%", textAlign: "center" }}
               >
-                <Picker.Item label="Light" value="light" />
-                <Picker.Item label="Dark" value="dark" />
+                <Picker.Item label={t("Light")} value="light" />
+                <Picker.Item label={t("Dark")} value="dark" />
               </Picker>
             </View>
           </View>
@@ -75,12 +87,12 @@ const SettingsScreen = () => {
           }}
         >
           <View style={[styles.line, { flex: 0.05 }]} />
-          <Text style={styles.sectionHeader}>Content</Text>
+          <Text style={styles.sectionHeader}>{t("Content")}</Text>
           <View style={[styles.line, { flex: 0.95 }]} />
         </View>
         <View style={styles.section}>
           <View style={styles.option}>
-            <Text style={styles.caption}>Films</Text>
+            <Text style={styles.caption}>{t("Films")}</Text>
             <View style={styles.value}>
               <Switch
                 value={enabledFilms}
@@ -92,7 +104,7 @@ const SettingsScreen = () => {
           <View style={styles.divider} />
 
           <View style={styles.option}>
-            <Text style={styles.caption}>Serials</Text>
+            <Text style={styles.caption}>{t("Serials")}</Text>
             <View style={styles.value}>
               <Switch
                 value={enabledSerials}
@@ -104,7 +116,7 @@ const SettingsScreen = () => {
           <View style={styles.divider} />
 
           <View style={styles.option}>
-            <Text style={styles.caption}>Books</Text>
+            <Text style={styles.caption}>{t("Books")}</Text>
             <View style={styles.value}>
               <Switch
                 value={enabledBooks}
@@ -116,7 +128,7 @@ const SettingsScreen = () => {
           <View style={styles.divider} />
 
           <View style={styles.option}>
-            <Text style={styles.caption}>Games</Text>
+            <Text style={styles.caption}>{t("Games")}</Text>
             <View style={styles.value}>
               <Switch
                 value={enabledGames}
@@ -128,7 +140,7 @@ const SettingsScreen = () => {
           <View style={styles.divider} />
 
           <View style={styles.option}>
-            <Text style={styles.caption}>Anime</Text>
+            <Text style={styles.caption}>{t("Anime")}</Text>
             <View style={styles.value}>
               <Switch
                 value={enabledAnime}
@@ -140,7 +152,7 @@ const SettingsScreen = () => {
           <View style={styles.divider} />
 
           <View style={styles.option}>
-            <Text style={styles.caption}>Manga</Text>
+            <Text style={styles.caption}>{t("Manga")}</Text>
             <View style={styles.value}>
               <Switch
                 value={enabledManga}

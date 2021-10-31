@@ -1,0 +1,25 @@
+{
+    "translation": {
+        "Films": "Films",
+        "Serials": "Serials",
+        "Books": "Books",
+        "Games": "Games",
+        "Anime": "Anime",
+        "Manga": "Manga",
+        "Home": "Home",
+        "Search": "Search",
+        "Favorites": "Favorites",
+        "Settings": "Settings",
+        "Recommendations": "Recommendations",
+        "Name": "Name",
+        "TitleName": "Title name",
+        "SimilarTitles": "Similar titles",
+        "Category": "Category",
+        "General": "General",
+        "Content": "Content",
+        "Language": "Language",
+        "Theme": "Theme",
+        "Light": "Light",
+        "Dark": "Dark"
+    }
+}

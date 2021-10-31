@@ -1,0 +1,25 @@
+{
+    "translation": {
+        "Films": "Filmy",
+        "Serials": "Seriály",
+        "Books": "Knihy",
+        "Games": "Hry",
+        "Anime": "Anime",
+        "Manga": "Manga",
+        "Home": "Přehled",
+        "Search": "Vyhledání",
+        "Favorites": "Oblíbené",
+        "Settings": "Nastavení",
+        "Recommendations": "Doporučení",
+        "Name": "Název",
+        "TitleName": "Název titulu",
+        "SimilarTitles": "Podobné tituly",
+        "Category": "Kategorie",
+        "General": "Obecné",
+        "Content": "Obsah",
+        "Language": "Jazyk",
+        "Theme": "Motiv",
+        "Light": "Světlý",
+        "Dark": "Tmavý"
+    }
+}

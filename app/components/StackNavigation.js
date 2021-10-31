@@ -1,6 +1,7 @@
 import React from "react";
 import { TouchableOpacity, Image } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { useTranslation } from "react-i18next";
 
 import colors from "../constants/colors";
 import HomeScreen from "../screens/HomeScreen";
@@ -37,6 +38,8 @@ const screenOptions = ({ navigation }) => ({
 });
 
 export const HomeScreenNavigator = (data) => {
+  const { t } = useTranslation();
+
   return (
     <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen
@@ -44,14 +47,14 @@ export const HomeScreenNavigator = (data) => {
         component={HomeScreen}
         initialParams={data.route.params}
         options={({ navigation }) => ({
-          title: "Home",
+          title: t("Home"),
         })}
       />
       <Stack.Screen
         name="GalleryScreen"
         component={GalleryScreen}
         options={() => ({
-          title: "Recommendations",
+          title: t("Recommendations"),
         })}
       />
 
@@ -59,14 +62,14 @@ export const HomeScreenNavigator = (data) => {
         name="ItemDetailScreen"
         component={ItemDetailScreen}
         options={({ route }) => ({
-          title: "Details",
+          title: t("Details"),
         })}
       />
       <Stack.Screen
         name="SettingsScreen"
         component={SettingsScreen}
         options={() => ({
-          title: "Settings",
+          title: t("Settings"),
           headerLeft: () => null,
         })}
       />
@@ -75,6 +78,8 @@ export const HomeScreenNavigator = (data) => {
 };
 
 export const GalleryScreenNavigator = (data) => {
+  const { t } = useTranslation();
+
   return (
     <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen
@@ -82,21 +87,21 @@ export const GalleryScreenNavigator = (data) => {
         component={GalleryScreen}
         initialParams={{ initialRouteName: "Films", data: data.route.params }}
         options={() => ({
-          title: "Favorites",
+          title: t("Favorites"),
         })}
       />
       <Stack.Screen
         name="ItemDetailScreen"
         component={ItemDetailScreen}
         options={({ route }) => ({
-          title: "Details",
+          title: t("Details"),
         })}
       />
       <Stack.Screen
         name="SettingsScreen"
         component={SettingsScreen}
         options={() => ({
-          title: "Settings",
+          title: t("Settings"),
           headerLeft: () => null,
         })}
       />
@@ -105,27 +110,29 @@ export const GalleryScreenNavigator = (data) => {
 };
 
 export const SearchScreenNavigator = () => {
+  const { t } = useTranslation();
+
   return (
     <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen
         name="SearchScreen"
         component={SearchScreen}
         options={() => ({
-          title: "Search",
+          title: t("Search"),
         })}
       />
       <Stack.Screen
         name="ItemDetailScreen"
         component={ItemDetailScreen}
         options={({ route }) => ({
-          title: "Details",
+          title: t("Details"),
         })}
       />
       <Stack.Screen
         name="SettingsScreen"
         component={SettingsScreen}
         options={() => ({
-          title: "Settings",
+          title: t("Settings"),
           headerLeft: () => null,
         })}
       />

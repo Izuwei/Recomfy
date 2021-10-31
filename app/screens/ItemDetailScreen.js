@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -94,12 +95,14 @@ const fetchSimilarContent = () => {
 };
 
 const ItemDetailScreen = ({ navigation, route }) => {
+  const { t } = useTranslation();
+
   return (
     <ScrollView style={[styles.container, { flexDirection: "column" }]}>
       <View style={styles.row}>
-        <View style={styles.line} />
+        <View style={[styles.line, { flex: 1 }]} />
         <Text style={styles.title}>{route.params.data.title}</Text>
-        <View style={styles.line} />
+        <View style={[styles.line, { flex: 1 }]} />
       </View>
       <View style={[styles.container, { flexDirection: "row" }]}>
         <View style={styles.imageContainer}>
@@ -116,7 +119,7 @@ const ItemDetailScreen = ({ navigation, route }) => {
             /** FIXME: check if it is in "seen" list and replace 'true'*/
             color={true ? colors.green : colors.red}
             icon={true ? AddIcon : RemoveIcon}
-            text={true ? "ADD TO FAVORITES" : "REMOVE FROM FAVORITES"}
+            text={t("Favorites").toUpperCase()}
           />
         </View>
       </View>
@@ -125,8 +128,9 @@ const ItemDetailScreen = ({ navigation, route }) => {
       </View>
       <View>
         <View style={[styles.row, { marginTop: 15 }]}>
-          <Text style={styles.sectionTitle}>Similar titles</Text>
-          <View style={styles.line} />
+          <View style={[styles.line, { flex: 0.05 }]} />
+          <Text style={styles.sectionTitle}>{t("SimilarTitles")}</Text>
+          <View style={[styles.line, { flex: 0.95 }]} />
         </View>
         <FlatList
           horizontal
@@ -153,6 +157,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     marginRight: 10,
+    marginLeft: 10,
     fontWeight: "800",
     fontSize: 18,
     fontWeight: "bold",
@@ -161,7 +166,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   line: {
-    flex: 1,
     height: 1.5,
     backgroundColor: colors.red,
   },
