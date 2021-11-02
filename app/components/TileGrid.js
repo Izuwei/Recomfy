@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FlatGrid } from "react-native-super-grid";
 import {
   Text,
@@ -8,10 +8,12 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import colors from "../constants/colors";
 import geometry from "../constants/geometry";
+import { ThemeContext } from "../utils/ThemeProvider";
 
 const TileGrid = ({ navigation, data }) => {
+  const { theme } = useContext(ThemeContext);
+
   return (
     <FlatGrid
       itemDimension={100}
@@ -37,7 +39,9 @@ const TileGrid = ({ navigation, data }) => {
             resizeMode="cover"
           >
             <View style={styles.titleBG}>
-              <Text style={styles.itemName}>{item.title}</Text>
+              <Text style={[styles.itemName, { color: theme.white }]}>
+                {item.title}
+              </Text>
             </View>
           </ImageBackground>
         </TouchableOpacity>
@@ -73,7 +77,6 @@ const styles = StyleSheet.create({
   itemName: {
     fontSize: 16,
     margin: 4,
-    color: colors.white,
     fontWeight: "600",
   },
 });

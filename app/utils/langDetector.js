@@ -4,7 +4,7 @@ const languageDetector = {
   type: "languageDetector",
   async: true,
   detect: async (callback) => {
-    const lang = await AsyncStorage.getItem("@i18n_lang");
+    const lang = await AsyncStorage.getItem("lang");
     return callback(lang);
   },
   init: () => {},

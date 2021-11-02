@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 
-import colors from "../constants/colors";
+import { ThemeContext } from "../utils/ThemeProvider";
 
 const HorizListItem = ({ navigation, item }) => {
+  const { theme } = useContext(ThemeContext);
+
   return (
     <TouchableOpacity
       onPress={() =>
@@ -21,7 +23,9 @@ const HorizListItem = ({ navigation, item }) => {
           style={styles.itemPhoto}
           resizeMode="cover"
         />
-        <Text style={styles.itemText}>{item.title}</Text>
+        <Text style={[styles.itemText, { color: theme.text }]}>
+          {item.title}
+        </Text>
       </View>
     </TouchableOpacity>
   );
@@ -45,7 +49,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   itemText: {
-    color: colors.gray,
     marginTop: 5,
   },
 });

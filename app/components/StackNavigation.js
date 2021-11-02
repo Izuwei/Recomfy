@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { TouchableOpacity, Image } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useTranslation } from "react-i18next";
 
-import colors from "../constants/colors";
+import { ThemeContext } from "../utils/ThemeProvider";
 import HomeScreen from "../screens/HomeScreen";
 import GalleryScreen from "../screens/GalleryScreen";
 import SearchScreen from "../screens/SearchScreen";
@@ -12,14 +12,14 @@ import SettingsScreen from "../screens/SettingsScreen";
 
 const Stack = createStackNavigator();
 
-const screenOptions = ({ navigation }) => ({
+const screenOptions = ({ navigation }, theme) => ({
   headerTitleStyle: {
-    color: colors.white,
+    color: theme.white,
   },
   headerTitleAlign: "center",
-  headerTintColor: colors.white,
+  headerTintColor: theme.white,
   headerStyle: {
-    backgroundColor: colors.red,
+    backgroundColor: theme.primary,
   },
   headerRight: () => (
     <TouchableOpacity onPress={() => navigation.navigate("SettingsScreen")}>
@@ -30,7 +30,7 @@ const screenOptions = ({ navigation }) => ({
           width: 23,
           height: 23,
           margin: 12,
-          tintColor: colors.white,
+          tintColor: theme.white,
         }}
       />
     </TouchableOpacity>
@@ -39,9 +39,12 @@ const screenOptions = ({ navigation }) => ({
 
 export const HomeScreenNavigator = (data) => {
   const { t } = useTranslation();
+  const { theme } = useContext(ThemeContext);
 
   return (
-    <Stack.Navigator screenOptions={screenOptions}>
+    <Stack.Navigator
+      screenOptions={(navigation) => screenOptions(navigation, theme)}
+    >
       <Stack.Screen
         name="HomeScreen"
         component={HomeScreen}
@@ -79,9 +82,12 @@ export const HomeScreenNavigator = (data) => {
 
 export const GalleryScreenNavigator = (data) => {
   const { t } = useTranslation();
+  const { theme } = useContext(ThemeContext);
 
   return (
-    <Stack.Navigator screenOptions={screenOptions}>
+    <Stack.Navigator
+      screenOptions={(navigation) => screenOptions(navigation, theme)}
+    >
       <Stack.Screen
         name="GalleryScreen"
         component={GalleryScreen}
@@ -111,9 +117,12 @@ export const GalleryScreenNavigator = (data) => {
 
 export const SearchScreenNavigator = () => {
   const { t } = useTranslation();
+  const { theme } = useContext(ThemeContext);
 
   return (
-    <Stack.Navigator screenOptions={screenOptions}>
+    <Stack.Navigator
+      screenOptions={(navigation) => screenOptions(navigation, theme)}
+    >
       <Stack.Screen
         name="SearchScreen"
         component={SearchScreen}

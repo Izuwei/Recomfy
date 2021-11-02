@@ -1,10 +1,10 @@
 import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
 
 import "./app/utils/i18n";
-import NavBar from "./app/components/NavBar";
+import { ThemeProvider } from "./app/utils/ThemeProvider";
+import NavigationOverlay from "./app/components/NavigationOverlay";
 
 /**Dummy */
 const fetchFilms = () => {
@@ -375,9 +375,9 @@ const fetchManga = () => {
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <ThemeProvider>
       <StatusBar style="light" />
-      <NavBar
+      <NavigationOverlay
         recommendations={{
           films: fetchFilms(),
           serials: fetchSerials(),
@@ -414,6 +414,6 @@ export default function App() {
           ],
         }}
       />
-    </NavigationContainer>
+    </ThemeProvider>
   );
 }

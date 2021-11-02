@@ -1,21 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { useTranslation } from "react-i18next";
 
 import TileGrid from "./TileGrid";
-import colors from "../constants/colors";
+import { ThemeContext } from "../utils/ThemeProvider";
 
 const Tab = createMaterialTopTabNavigator();
 
 const TopTabNavigation = ({ navigation, route, initialRouteName, data }) => {
   const { t } = useTranslation();
+  const { theme } = useContext(ThemeContext);
 
   return (
     <Tab.Navigator
       initialRouteName={initialRouteName}
       screenOptions={{
+        tabBarStyle: {
+          backgroundColor: theme.navigationTop,
+        },
         tabBarIndicatorStyle: {
-          backgroundColor: colors.red,
+          backgroundColor: theme.primary,
         },
         tabBarLabelStyle: {
           fontSize: 10,

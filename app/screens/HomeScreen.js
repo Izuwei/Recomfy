@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import {
   StyleSheet,
@@ -11,11 +11,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import colors from "../constants/colors";
 import geometry from "../constants/geometry";
 import { HorizListItem as ListItem } from "../components/HorizListItem";
+import { ThemeContext } from "../utils/ThemeProvider";
 
-const ListButton = ({ onPress }) => (
+const ListButton = ({ onPress, theme }) => (
   <TouchableOpacity onPress={onPress}>
     <Image
       source={require("../assets/icons/list-icon.png")}
@@ -24,7 +24,7 @@ const ListButton = ({ onPress }) => (
         width: 23,
         height: 23,
         marginLeft: 5,
-        tintColor: colors.red,
+        tintColor: theme.primary,
         justifyContent: "center",
         alignItems: "center",
       }}
@@ -34,6 +34,7 @@ const ListButton = ({ onPress }) => (
 
 const HomeScreen = ({ navigation, route }) => {
   const { t } = useTranslation();
+  const { theme } = useContext(ThemeContext);
 
   const SECTIONS = [
     {
@@ -81,10 +82,23 @@ const HomeScreen = ({ navigation, route }) => {
                   alignItems: "center",
                 }}
               >
-                <View style={[styles.line, { flex: 0.05 }]} />
-                <Text style={styles.sectionHeader}>{t(section.title)}</Text>
-                <View style={[styles.line, { flex: 0.95 }]} />
+                <View
+                  style={[
+                    styles.line,
+                    { flex: 0.05, backgroundColor: theme.primary },
+                  ]}
+                />
+                <Text style={[styles.sectionHeader, { color: theme.primary }]}>
+                  {t(section.title)}
+                </Text>
+                <View
+                  style={[
+                    styles.line,
+                    { flex: 0.95, backgroundColor: theme.primary },
+                  ]}
+                />
                 <ListButton
+                  theme={theme}
                   onPress={() =>
                     navigation.navigate("GalleryScreen", {
                       data: route.params,
@@ -114,7 +128,6 @@ const HomeScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.bg,
   },
   sectionHeader: {
     marginRight: 10,
@@ -122,13 +135,11 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     fontSize: 18,
     fontWeight: "bold",
-    color: colors.red,
     marginBottom: 5,
     textAlign: "center",
   },
   line: {
     height: 1.5,
-    backgroundColor: colors.red,
   },
 });
 

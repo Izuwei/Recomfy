@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import {
   View,
@@ -10,13 +10,13 @@ import {
   FlatList,
 } from "react-native";
 
-import colors from "../constants/colors";
 import geometry from "../constants/geometry";
 import AddIcon from "../assets/icons/plus-icon.png";
 import RemoveIcon from "../assets/icons/remove-icon.png";
+import { ThemeContext } from "../utils/ThemeProvider";
 import { HorizListItem as ListItem } from "../components/HorizListItem";
 
-const FavoriteButton = ({ onPress, text, color, icon }) => (
+const FavoriteButton = ({ onPress, theme, text, color, icon }) => (
   <TouchableOpacity onPress={onPress}>
     <View
       style={{
@@ -36,10 +36,10 @@ const FavoriteButton = ({ onPress, text, color, icon }) => (
           width: 20,
           height: 20,
           marginRight: 5,
-          tintColor: colors.white,
+          tintColor: theme.white,
         }}
       />
-      <Text style={{ color: colors.white }}>{text}</Text>
+      <Text style={{ color: theme.white }}>{text}</Text>
     </View>
   </TouchableOpacity>
 );
@@ -96,13 +96,20 @@ const fetchSimilarContent = () => {
 
 const ItemDetailScreen = ({ navigation, route }) => {
   const { t } = useTranslation();
+  const { theme } = useContext(ThemeContext);
 
   return (
     <ScrollView style={[styles.container, { flexDirection: "column" }]}>
       <View style={styles.row}>
-        <View style={[styles.line, { flex: 1 }]} />
-        <Text style={styles.title}>{route.params.data.title}</Text>
-        <View style={[styles.line, { flex: 1 }]} />
+        <View
+          style={[styles.line, { flex: 1, backgroundColor: theme.primary }]}
+        />
+        <Text style={[styles.title, { color: theme.primary }]}>
+          {route.params.data.title}
+        </Text>
+        <View
+          style={[styles.line, { flex: 1, backgroundColor: theme.primary }]}
+        />
       </View>
       <View style={[styles.container, { flexDirection: "row" }]}>
         <View style={styles.imageContainer}>
@@ -113,24 +120,41 @@ const ItemDetailScreen = ({ navigation, route }) => {
           />
         </View>
         <View style={styles.infoContainer}>
-          <Text style={styles.rating}>{route.params.data.rating}</Text>
+          <Text style={[styles.rating, { color: theme.primary }]}>
+            {route.params.data.rating}
+          </Text>
           <FavoriteButton
             onPress={() => null}
+            theme={theme}
             /** FIXME: check if it is in "seen" list and replace 'true'*/
-            color={true ? colors.green : colors.red}
+            color={true ? theme.green : theme.red}
             icon={true ? AddIcon : RemoveIcon}
             text={t("Favorites").toUpperCase()}
           />
         </View>
       </View>
       <View>
-        <Text>{route.params.data.description}</Text>
+        <Text style={{ color: theme.text }}>
+          {route.params.data.description}
+        </Text>
       </View>
       <View>
         <View style={[styles.row, { marginTop: 15 }]}>
-          <View style={[styles.line, { flex: 0.05 }]} />
-          <Text style={styles.sectionTitle}>{t("SimilarTitles")}</Text>
-          <View style={[styles.line, { flex: 0.95 }]} />
+          <View
+            style={[
+              styles.line,
+              { flex: 0.05, backgroundColor: theme.primary },
+            ]}
+          />
+          <Text style={[styles.sectionTitle, { color: theme.primary }]}>
+            {t("SimilarTitles")}
+          </Text>
+          <View
+            style={[
+              styles.line,
+              { flex: 0.95, backgroundColor: theme.primary },
+            ]}
+          />
         </View>
         <FlatList
           horizontal
@@ -149,7 +173,6 @@ const ItemDetailScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   title: {
     fontSize: 26,
-    color: colors.red,
     textAlign: "center",
     fontWeight: "bold",
     marginLeft: 10,
@@ -161,13 +184,11 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     fontSize: 18,
     fontWeight: "bold",
-    color: colors.red,
     marginBottom: 5,
     textAlign: "center",
   },
   line: {
     height: 1.5,
-    backgroundColor: colors.red,
   },
   row: {
     flexDirection: "row",
@@ -196,7 +217,6 @@ const styles = StyleSheet.create({
   rating: {
     fontSize: 36,
     fontWeight: "900",
-    color: colors.red,
   },
 });
 

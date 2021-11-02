@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   View,
   Text,
@@ -10,17 +10,17 @@ import {
 import { Picker } from "@react-native-picker/picker";
 import { useTranslation } from "react-i18next";
 
-import colors from "../constants/colors";
+import { ThemeContext } from "../utils/ThemeProvider";
 import TileGrid from "../components/TileGrid";
 
-const SearchButton = ({ onPress }) => (
+const SearchButton = ({ onPress, theme }) => (
   <TouchableOpacity onPress={onPress}>
     <View
       style={{
         width: 60,
         height: 60,
         borderRadius: 35,
-        backgroundColor: colors.red,
+        backgroundColor: theme.primary,
         justifyContent: "center",
         alignItems: "center",
         ...styles.shadow,
@@ -32,7 +32,7 @@ const SearchButton = ({ onPress }) => (
         style={{
           width: 35,
           height: 35,
-          tintColor: colors.white,
+          tintColor: theme.white,
         }}
       />
     </View>
@@ -41,6 +41,7 @@ const SearchButton = ({ onPress }) => (
 
 const SearchScreen = ({ navigation, route }) => {
   const { t } = useTranslation();
+  const { theme } = useContext(ThemeContext);
 
   const [titleName, setTitleName] = useState("");
   const [category, setCategory] = useState("films");
@@ -94,32 +95,46 @@ const SearchScreen = ({ navigation, route }) => {
     <View style={styles.container}>
       <View style={[styles.row, { marginBottom: 10 }]}>
         <View style={{ flex: 0.25 }}>
-          <Text style={styles.label}>{t("Name") + ":"}</Text>
+          <Text style={[styles.label, { color: theme.text }]}>
+            {t("Name") + ":"}
+          </Text>
         </View>
         <View style={{ flex: 0.75, alignItems: "center" }}>
           <TextInput
-            style={styles.input}
+            style={[
+              styles.input,
+              { color: theme.text, borderColor: theme.text },
+            ]}
             onChange={setTitleName}
             placeholder={t("TitleName")}
+            placeholderTextColor={theme.placeholder}
           />
         </View>
       </View>
       <View style={[styles.row, { marginBottom: 10 }]}>
         <View style={{ flex: 0.25 }}>
-          <Text style={styles.label}>{t("Category") + ":"}</Text>
+          <Text style={[styles.label, { color: theme.text }]}>
+            {t("Category") + ":"}
+          </Text>
         </View>
         <View
           style={{
             flex: 0.75,
             alignItems: "center",
             borderBottomWidth: 1,
+            borderColor: theme.text,
             margin: 2,
           }}
         >
           <Picker
             selectedValue={category}
             onValueChange={(itemValue, itemIndex) => setCategory(itemValue)}
-            style={{ width: "100%", height: 30, textAlign: "center" }}
+            style={{
+              width: "100%",
+              height: 30,
+              textAlign: "center",
+              color: theme.text,
+            }}
           >
             <Picker.Item label={t("Films")} value="films" />
             <Picker.Item label={t("Serials")} value="serials" />
@@ -132,9 +147,13 @@ const SearchScreen = ({ navigation, route }) => {
       </View>
       <View />
       <View style={styles.row}>
-        <View style={[styles.line, { flex: 0.8 }]} />
-        <SearchButton onPress={() => search()} />
-        <View style={[styles.line, { flex: 0.2 }]} />
+        <View
+          style={[styles.line, { flex: 0.8, backgroundColor: theme.primary }]}
+        />
+        <SearchButton onPress={() => search()} theme={theme} />
+        <View
+          style={[styles.line, { flex: 0.2, backgroundColor: theme.primary }]}
+        />
       </View>
       <TileGrid navigation={navigation} data={results} />
     </View>
@@ -169,7 +188,6 @@ const styles = StyleSheet.create({
     height: 2,
     marginTop: 5,
     marginBottom: 5,
-    backgroundColor: colors.red,
   },
   shadow: {
     shadowColor: "#7f5df0",

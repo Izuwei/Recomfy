@@ -11,12 +11,11 @@ import {
   StyleSheet,
 } from "react-native";
 
-import colors from "../constants/colors";
+import { ThemeContext } from "../utils/ThemeProvider";
 
 const SettingsScreen = () => {
   const { t, i18n } = useTranslation();
-
-  const [theme, setTheme] = useState("light");
+  const { theme, changeTheme } = React.useContext(ThemeContext);
 
   const [enabledFilms, setEnabledFilms] = useState(true);
   const [enabledSerials, setEnabledSerials] = useState(true);
@@ -28,7 +27,7 @@ const SettingsScreen = () => {
   const storeLang = async (value) => {
     i18n.changeLanguage(value);
     try {
-      await AsyncStorage.setItem("@i18n_lang", value);
+      await AsyncStorage.setItem("lang", value);
     } catch (e) {
       console.log("Unable to store language!");
     }
@@ -43,19 +42,33 @@ const SettingsScreen = () => {
             alignItems: "center",
           }}
         >
-          <View style={[styles.line, { flex: 0.05 }]} />
-          <Text style={styles.sectionHeader}>{t("General")}</Text>
-          <View style={[styles.line, { flex: 0.95 }]} />
+          <View
+            style={[
+              styles.line,
+              { flex: 0.05, backgroundColor: theme.primary },
+            ]}
+          />
+          <Text style={[styles.sectionHeader, { color: theme.primary }]}>
+            {t("General")}
+          </Text>
+          <View
+            style={[
+              styles.line,
+              { flex: 0.95, backgroundColor: theme.primary },
+            ]}
+          />
         </View>
 
         <View style={styles.section}>
           <View style={styles.option}>
-            <Text style={styles.caption}>{t("Language")}</Text>
+            <Text style={[styles.caption, { color: theme.text }]}>
+              {t("Language")}
+            </Text>
             <View style={styles.value}>
               <Picker
                 selectedValue={i18n.language}
                 onValueChange={(itemValue, itemIndex) => storeLang(itemValue)}
-                style={{ width: "80%", textAlign: "center" }}
+                style={{ width: "80%", textAlign: "center", color: theme.text }}
               >
                 <Picker.Item label="English" value="en" />
                 <Picker.Item label="Čeština" value="cz" />
@@ -64,18 +77,21 @@ const SettingsScreen = () => {
             </View>
           </View>
 
-          <View style={styles.divider} />
+          <View style={[styles.divider, { backgroundColor: theme.divider }]} />
 
           <View style={styles.option}>
-            <Text style={styles.caption}>{t("Theme")}</Text>
+            <Text style={[styles.caption, { color: theme.text }]}>
+              {t("Theme")}
+            </Text>
             <View style={styles.value}>
               <Picker
-                selectedValue={theme}
-                onValueChange={(itemValue, itemIndex) => setTheme(itemValue)}
-                style={{ width: "80%", textAlign: "center" }}
+                selectedValue={theme.name}
+                onValueChange={(itemValue, itemIndex) => changeTheme(itemValue)}
+                style={{ width: "80%", textAlign: "center", color: theme.text }}
               >
                 <Picker.Item label={t("Light")} value="light" />
                 <Picker.Item label={t("Dark")} value="dark" />
+                <Picker.Item label={t("Yellow")} value="yellow" />
               </Picker>
             </View>
           </View>
@@ -86,13 +102,27 @@ const SettingsScreen = () => {
             alignItems: "center",
           }}
         >
-          <View style={[styles.line, { flex: 0.05 }]} />
-          <Text style={styles.sectionHeader}>{t("Content")}</Text>
-          <View style={[styles.line, { flex: 0.95 }]} />
+          <View
+            style={[
+              styles.line,
+              { flex: 0.05, backgroundColor: theme.primary },
+            ]}
+          />
+          <Text style={[styles.sectionHeader, { color: theme.primary }]}>
+            {t("Content")}
+          </Text>
+          <View
+            style={[
+              styles.line,
+              { flex: 0.95, backgroundColor: theme.primary },
+            ]}
+          />
         </View>
         <View style={styles.section}>
           <View style={styles.option}>
-            <Text style={styles.caption}>{t("Films")}</Text>
+            <Text style={[styles.caption, { color: theme.text }]}>
+              {t("Films")}
+            </Text>
             <View style={styles.value}>
               <Switch
                 value={enabledFilms}
@@ -101,10 +131,12 @@ const SettingsScreen = () => {
             </View>
           </View>
 
-          <View style={styles.divider} />
+          <View style={[styles.divider, { backgroundColor: theme.divider }]} />
 
           <View style={styles.option}>
-            <Text style={styles.caption}>{t("Serials")}</Text>
+            <Text style={[styles.caption, { color: theme.text }]}>
+              {t("Serials")}
+            </Text>
             <View style={styles.value}>
               <Switch
                 value={enabledSerials}
@@ -113,10 +145,12 @@ const SettingsScreen = () => {
             </View>
           </View>
 
-          <View style={styles.divider} />
+          <View style={[styles.divider, { backgroundColor: theme.divider }]} />
 
           <View style={styles.option}>
-            <Text style={styles.caption}>{t("Books")}</Text>
+            <Text style={[styles.caption, { color: theme.text }]}>
+              {t("Books")}
+            </Text>
             <View style={styles.value}>
               <Switch
                 value={enabledBooks}
@@ -125,10 +159,12 @@ const SettingsScreen = () => {
             </View>
           </View>
 
-          <View style={styles.divider} />
+          <View style={[styles.divider, { backgroundColor: theme.divider }]} />
 
           <View style={styles.option}>
-            <Text style={styles.caption}>{t("Games")}</Text>
+            <Text style={[styles.caption, { color: theme.text }]}>
+              {t("Games")}
+            </Text>
             <View style={styles.value}>
               <Switch
                 value={enabledGames}
@@ -137,10 +173,12 @@ const SettingsScreen = () => {
             </View>
           </View>
 
-          <View style={styles.divider} />
+          <View style={[styles.divider, { backgroundColor: theme.divider }]} />
 
           <View style={styles.option}>
-            <Text style={styles.caption}>{t("Anime")}</Text>
+            <Text style={[styles.caption, { color: theme.text }]}>
+              {t("Anime")}
+            </Text>
             <View style={styles.value}>
               <Switch
                 value={enabledAnime}
@@ -149,10 +187,12 @@ const SettingsScreen = () => {
             </View>
           </View>
 
-          <View style={styles.divider} />
+          <View style={[styles.divider, { backgroundColor: theme.divider }]} />
 
           <View style={styles.option}>
-            <Text style={styles.caption}>{t("Manga")}</Text>
+            <Text style={[styles.caption, { color: theme.text }]}>
+              {t("Manga")}
+            </Text>
             <View style={styles.value}>
               <Switch
                 value={enabledManga}
@@ -173,7 +213,6 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     fontSize: 18,
     fontWeight: "bold",
-    color: colors.red,
     marginBottom: 5,
     textAlign: "center",
   },
@@ -199,12 +238,10 @@ const styles = StyleSheet.create({
   },
   divider: {
     height: 0.4,
-    backgroundColor: colors.black,
     opacity: 0.4,
   },
   line: {
     height: 1.5,
-    backgroundColor: colors.red,
   },
 });
 
