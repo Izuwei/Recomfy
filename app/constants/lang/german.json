@@ -1,0 +1,27 @@
+{
+    "translation": {
+        "Films": "Filme",
+        "Serials": "Serien",
+        "Books": "Bücher",
+        "Games": "Spiele",
+        "Anime": "Anime-Serien",
+        "Manga": "Manga",
+        "Home": "Homepage",
+        "Search": "Suchen",
+        "Favorites": "Favoriten",
+        "Settings": "Einstellungen",
+        "Recommendations": "Empfehlungen",
+        "Details": "Details",
+        "Name": "Name",
+        "TitleName": "Titelsname",
+        "SimilarTitles": "Ähnlichen titel",
+        "Category": "Kategorie",
+        "General": "Generell",
+        "Content": "Gehalt",
+        "Language": "Sprache",
+        "Theme": "Thema",
+        "Light": "Hell",
+        "Dark": "Dunkel",
+        "Yellow": "Gelb"
+    }
+}

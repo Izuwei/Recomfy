@@ -5,6 +5,7 @@ import languageDetector from "./langDetector";
 
 import english from "../constants/lang/english.json";
 import czech from "../constants/lang/czech.json";
+import german from "../constants/lang/german.json";
 import turkish from "../constants/lang/turkish.json";
 
 /** i18n Config */
@@ -16,6 +17,7 @@ i18next
     resources: {
       en: english,
       cz: czech,
+      de: german,
       tr: turkish,
     },
     keySeparator: false,
