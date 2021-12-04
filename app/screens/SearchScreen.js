@@ -6,12 +6,15 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  Keyboard,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
 
 import { ThemeContext } from "../utils/ThemeProvider";
 import TileGrid from "../components/TileGrid";
+import config from "../../config.json";
 
 const SearchButton = ({ onPress, theme }) => (
   <TouchableOpacity onPress={onPress}>
@@ -48,47 +51,34 @@ const SearchScreen = ({ navigation, route }) => {
 
   const [results, setResults] = useState([]);
 
-  /**Dummy */
-  const search = () => {
-    setResults([
-      {
-        key: "1",
-        title: "Ice Age 2",
-        image:
-          "https://lumiere-a.akamaihd.net/v1/images/p_iceagethemeltdown_21384_0b4f5877.jpeg",
-        description:
-          "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
-        rating: "8/10",
-      },
-      {
-        key: "2",
-        title: "Ice Age 3",
-        image:
-          "https://cdn.knihcentrum.cz/6849979_ice-age-3-dawn-of-the-dinosaurs-cd.jpg",
-        description:
-          "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
-        rating: "8/10",
-      },
-      {
-        key: "3",
-        title: "Ice Age 4",
-        image:
-          "https://smartcdkeys.com/image/data/products/ice-age-4-continental-drift-arctic-games/cover/ice-age-4-continental-drift-arctic-games-smartcdkeys-cheap-cd-key-cover.jpg",
-        description:
-          "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
-        rating: "8/10",
-      },
-      {
-        key: "4",
-        title: "Ice Age 5",
-        image:
-          "https://m.media-amazon.com/images/M/MV5BMzFjYWM5NzgtMGIwMi00MmE3LWE3NTgtNmIwMmRkNmFmYzJkXkEyXkFqcGdeQXVyNDQ2MTMzODA@._V1_.jpg",
-        description:
-          "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
-        rating: "8/10",
-      },
-    ]);
-    return;
+  const search = async () => {
+    Keyboard.dismiss();
+    const name = titleName.replace(/\s/g, "");
+
+    axios
+      .get("http://localhost:8080/games/search", {
+        params: {
+          name: name,
+        },
+      })
+      .then((res) => {
+        const response = res.data;
+
+        let data = [];
+
+        response.forEach((title) => {
+          data.push({
+            key: title.id,
+            title: title.name,
+            image: title.image,
+            description: "",
+            rating: title.rating + "/" + title.ratingTop,
+          });
+        });
+
+        setResults(data);
+      })
+      .catch((err) => setResults([]));
   };
 
   return (
@@ -105,7 +95,8 @@ const SearchScreen = ({ navigation, route }) => {
               styles.input,
               { color: theme.text, borderColor: theme.text },
             ]}
-            onChange={setTitleName}
+            onChangeText={setTitleName}
+            value={titleName}
             placeholder={t("TitleName")}
             placeholderTextColor={theme.placeholder}
           />
