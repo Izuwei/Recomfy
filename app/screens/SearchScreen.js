@@ -53,7 +53,7 @@ const SearchScreen = ({ navigation, route }) => {
 
   const search = async () => {
     Keyboard.dismiss();
-    const name = titleName.replace(/\s/g, "");
+    const name = titleName.replace(/\s+/g, "+");
 
     axios
       .get("http://localhost:8080/games/search", {
