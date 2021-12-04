@@ -5,8 +5,12 @@ app.get("/", (req, res) => {
   res.status(200).send("TAMa server is running.");
 });
 
+const movieRouter = require("./routes/movies");
+const serialRouter = require("./routes/serials");
 const gameRouter = require("./routes/games");
 
+app.use("/movies", movieRouter);
+app.use("/serials", serialRouter);
 app.use("/games", gameRouter);
 
 // Set port, listen for requests

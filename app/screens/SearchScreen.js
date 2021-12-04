@@ -16,6 +16,99 @@ import { ThemeContext } from "../utils/ThemeProvider";
 import TileGrid from "../components/TileGrid";
 import config from "../../config.json";
 
+const searchMovies = async (name) => {
+  const convertedName = name.replace(/\s+/g, "+");
+
+  try {
+    const res = await axios.get(
+      config.api_url + ":" + config.api_port + "/movies/search",
+      {
+        params: {
+          name: convertedName,
+        },
+      }
+    );
+
+    var data = [];
+    res.data.forEach((title) => {
+      data.push({
+        key: title.id.toString(),
+        type: "movie",
+        title: title.name,
+        image: title.image,
+        description: title.overview,
+        rating: title.rating + "/" + title.rating_top,
+      });
+    });
+
+    return data;
+  } catch (err) {
+    return [];
+  }
+};
+
+const searchSerials = async (name) => {
+  const convertedName = name.replace(/\s+/g, "+");
+
+  try {
+    const res = await axios.get(
+      config.api_url + ":" + config.api_port + "/serials/search",
+      {
+        params: {
+          name: convertedName,
+        },
+      }
+    );
+
+    var data = [];
+    res.data.forEach((title) => {
+      data.push({
+        key: title.id,
+        type: "serial",
+        title: title.name,
+        image: title.image,
+        description: title.overview,
+        rating: title.rating + "/" + title.rating_top,
+      });
+    });
+
+    return data;
+  } catch (err) {
+    return [];
+  }
+};
+
+const searchGames = async (name) => {
+  const convertedName = name.replace(/\s+/g, "+");
+
+  try {
+    const res = await axios.get(
+      config.api_url + ":" + config.api_port + "/games/search",
+      {
+        params: {
+          name: convertedName,
+        },
+      }
+    );
+
+    var data = [];
+    res.data.forEach((title) => {
+      data.push({
+        key: title.id,
+        type: "game",
+        title: title.name,
+        image: title.image,
+        description: title.description,
+        rating: title.rating + "/" + title.rating_top,
+      });
+    });
+
+    return data;
+  } catch (err) {
+    return [];
+  }
+};
+
 const SearchButton = ({ onPress, theme }) => (
   <TouchableOpacity onPress={onPress}>
     <View
@@ -53,32 +146,23 @@ const SearchScreen = ({ navigation, route }) => {
 
   const search = async () => {
     Keyboard.dismiss();
-    const name = titleName.replace(/\s+/g, "+");
 
-    axios
-      .get("http://localhost:8080/games/search", {
-        params: {
-          name: name,
-        },
-      })
-      .then((res) => {
-        const response = res.data;
-
-        let data = [];
-
-        response.forEach((title) => {
-          data.push({
-            key: title.id,
-            title: title.name,
-            image: title.image,
-            description: "",
-            rating: title.rating + "/" + title.ratingTop,
-          });
-        });
-
-        setResults(data);
-      })
-      .catch((err) => setResults([]));
+    switch (category) {
+      case "films":
+        const movies = await searchMovies(titleName);
+        setResults(movies);
+        break;
+      case "serials":
+        const serials = await searchSerials(titleName);
+        setResults(serials);
+        break;
+      case "games":
+        const games = await searchGames(titleName);
+        setResults(games);
+        break;
+      default:
+        setResults([]);
+    }
   };
 
   return (

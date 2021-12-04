@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
 import {
   View,
   Text,
@@ -15,6 +16,7 @@ import AddIcon from "../assets/icons/plus-icon.png";
 import RemoveIcon from "../assets/icons/remove-icon.png";
 import { ThemeContext } from "../utils/ThemeProvider";
 import { HorizListItem as ListItem } from "../components/HorizListItem";
+import config from "../../config.json";
 
 const FavoriteButton = ({ onPress, theme, text, color, icon }) => (
   <TouchableOpacity onPress={onPress}>
@@ -44,59 +46,70 @@ const FavoriteButton = ({ onPress, theme, text, color, icon }) => (
   </TouchableOpacity>
 );
 
-/** Dummy */
-const fetchSimilarContent = () => {
-  return [
-    {
-      key: "1",
-      title: "Ice Age 2",
-      image:
-        "https://lumiere-a.akamaihd.net/v1/images/p_iceagethemeltdown_21384_0b4f5877.jpeg",
-      description:
-        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
-      rating: "8/10",
-    },
-    {
-      key: "2",
-      title: "Ice Age 3",
-      image:
-        "https://cdn.knihcentrum.cz/6849979_ice-age-3-dawn-of-the-dinosaurs-cd.jpg",
-      description:
-        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
-      rating: "8/10",
-    },
-    {
-      key: "3",
-      title: "Ice Age 4",
-      image:
-        "https://smartcdkeys.com/image/data/products/ice-age-4-continental-drift-arctic-games/cover/ice-age-4-continental-drift-arctic-games-smartcdkeys-cheap-cd-key-cover.jpg",
-      description:
-        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
-      rating: "8/10",
-    },
-    {
-      key: "4",
-      title: "Ice Age 5",
-      image:
-        "https://m.media-amazon.com/images/M/MV5BMzFjYWM5NzgtMGIwMi00MmE3LWE3NTgtNmIwMmRkNmFmYzJkXkEyXkFqcGdeQXVyNDQ2MTMzODA@._V1_.jpg",
-      description:
-        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
-      rating: "8/10",
-    },
-    {
-      key: "5",
-      title: "Finding Nemo",
-      image: "https://filmtoro.cz/img/film/zjqInUwldOBa0q07fOyohYCWxWX.jpg",
-      description:
-        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
-      rating: "8/10",
-    },
-  ];
-};
-
 const ItemDetailScreen = ({ navigation, route }) => {
   const { t } = useTranslation();
   const { theme } = useContext(ThemeContext);
+
+  const [similarContent, setSimilarContent] = useState([]);
+
+  const setSimilarFilms = async (title) => {
+    try {
+      const res = await axios.get(
+        config.api_url + ":" + config.api_port + "/movies/similar/" + title.key
+      );
+
+      var data = [];
+      res.data.forEach((item) => {
+        data.push({
+          key: item.id.toString(),
+          type: title.type,
+          title: item.name,
+          image: item.image,
+          description: item.overview,
+          rating: item.rating + "/" + item.rating_top,
+        });
+      });
+      setSimilarContent(data);
+    } catch (err) {
+      setSimilarContent([]);
+    }
+  };
+
+  const setSimilarSerials = async (title) => {
+    try {
+      const res = await axios.get(
+        config.api_url + ":" + config.api_port + "/serials/similar/" + title.key
+      );
+
+      var data = [];
+      res.data.forEach((item) => {
+        data.push({
+          key: item.id.toString(),
+          type: title.type,
+          title: item.name,
+          image: item.image,
+          description: item.overview,
+          rating: item.rating + "/" + item.rating_top,
+        });
+      });
+      setSimilarContent(data);
+    } catch (err) {
+      setSimilarContent([]);
+    }
+  };
+
+  useEffect(() => {
+    switch (route.params.data.type) {
+      case "movie":
+        setSimilarFilms(route.params.data);
+        break;
+      case "serial":
+        setSimilarSerials(route.params.data);
+        break;
+      default:
+        setSimilarContent([]);
+    }
+  }, []);
 
   return (
     <ScrollView style={[styles.container, { flexDirection: "column" }]}>
@@ -158,7 +171,7 @@ const ItemDetailScreen = ({ navigation, route }) => {
         </View>
         <FlatList
           horizontal
-          data={fetchSimilarContent()}
+          data={similarContent}
           renderItem={({ item }) => (
             <ListItem navigation={navigation} item={item} />
           )}

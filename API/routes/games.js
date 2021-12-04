@@ -5,44 +5,101 @@ const axios = require("axios");
 const config = require("../config.json");
 
 router.get("/search", async (req, res) => {
-  const url =
-    "https://api.rawg.io/api/games?key=" +
-    config.keys.rawg +
-    "&search=" +
-    req.query.name;
+  try {
+    const rawgData = await axios.get(
+      "https://api.rawg.io/api/games?key=" +
+        config.keys.rawg +
+        "&search=" +
+        req.query.name
+    );
 
-  let data = await axios
-    .get(url)
-    .then((rawgResult) => {
-      return rawgResult.data.results;
-    })
-    .catch((err) => {
-      return [];
-    });
+    let results = [];
+    for (const title of rawgData.data.results) {
+      let tags = [];
+      title.tags.forEach((tag) => {
+        if (tag.language === "eng") {
+          tags.push(tag.name);
+        }
+      });
 
-  let result = [];
-
-  data.forEach((title) => {
-    let tags = [];
-    title.tags.forEach((tag) => {
-      if (tag.language === "eng") {
-        tags.push(tag.name);
+      var description = "";
+      try {
+        const details = await axios.get(
+          "https://api.rawg.io/api/games/" +
+            title.id +
+            "?key=" +
+            config.keys.rawg
+        );
+        description = details.data.description_raw;
+      } catch (err) {
+        description = "";
       }
-    });
 
-    result.push({
-      id: title.id,
-      name: title.name,
-      image: title.background_image,
-      rating: title.rating,
-      ratingTop: title.rating_top,
-      released: title.released,
-      updated: title.updated,
-      tags: tags,
-    });
-  });
+      results.push({
+        id: title.id,
+        name: title.name,
+        image: title.background_image,
+        description: description,
+        rating: title.rating,
+        rating_top: title.rating_top,
+        released: title.released,
+        updated: title.updated,
+        tags: tags,
+      });
+    }
+    res.json(results);
+  } catch (err) {
+    res.json([]);
+  }
+});
 
-  res.json(result);
+router.get("/similar/:id", async (req, res) => {
+  try {
+    const rawgData = await axios.get(
+      "https://api.rawg.io/api/games?key=" +
+        config.keys.rawg +
+        "&developers=" +
+        req.params.id
+    );
+
+    let results = [];
+    for (const title of rawgData.data.results) {
+      let tags = [];
+      title.tags.forEach((tag) => {
+        if (tag.language === "eng") {
+          tags.push(tag.name);
+        }
+      });
+
+      var description = "";
+      try {
+        const details = await axios.get(
+          "https://api.rawg.io/api/games/" +
+            title.id +
+            "?key=" +
+            config.keys.rawg
+        );
+        description = details.data.description_raw;
+      } catch (err) {
+        description = "";
+      }
+
+      results.push({
+        id: title.id,
+        name: title.name,
+        image: title.background_image,
+        description: description,
+        rating: title.rating,
+        rating_top: title.rating_top,
+        released: title.released,
+        updated: title.updated,
+        tags: tags,
+      });
+    }
+    res.json(results);
+  } catch (err) {
+    res.json([]);
+  }
 });
 
 module.exports = router;
