@@ -17,6 +17,8 @@ import RemoveIcon from "../assets/icons/remove-icon.png";
 import { ThemeContext } from "../utils/ThemeProvider";
 import { HorizListItem as ListItem } from "../components/HorizListItem";
 import config from "../../config.json";
+import {getUuid} from "../utils/uuid";
+
 
 const FavoriteButton = ({ onPress, theme, text, color, icon }) => (
   <TouchableOpacity onPress={onPress}>
@@ -45,6 +47,30 @@ const FavoriteButton = ({ onPress, theme, text, color, icon }) => (
     </View>
   </TouchableOpacity>
 );
+
+const addFavorite = async (title) => {
+
+  let uniqueId = await getUuid();
+
+
+  console.log(uniqueId)
+
+  try {
+    const res = await axios.get(
+        config.api_url + ":" + config.api_port + "/recommendation/addBookmark",
+        {
+          params: {
+            itemId: title.key,
+            userId: uniqueId,
+            category: title.type,
+          },
+        }
+    );
+    console.log("ok");
+  } catch (err) {
+    console.log("err");
+  }
+};
 
 const ItemDetailScreen = ({ navigation, route }) => {
   const { t } = useTranslation();
@@ -137,7 +163,7 @@ const ItemDetailScreen = ({ navigation, route }) => {
             {route.params.data.rating}
           </Text>
           <FavoriteButton
-            onPress={() => null}
+            onPress={() => addFavorite(route.params.data)}
             theme={theme}
             /** FIXME: check if it is in "seen" list and replace 'true'*/
             color={true ? theme.green : theme.red}
@@ -194,7 +220,6 @@ const styles = StyleSheet.create({
   sectionTitle: {
     marginRight: 10,
     marginLeft: 10,
-    fontWeight: "800",
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 5,

@@ -8,10 +8,12 @@ app.get("/", (req, res) => {
 const movieRouter = require("./routes/movies");
 const serialRouter = require("./routes/serials");
 const gameRouter = require("./routes/games");
+const recRouter = require("./routes/recommendations");
 
 app.use("/movies", movieRouter);
 app.use("/serials", serialRouter);
 app.use("/games", gameRouter);
+app.use("/recommendation", recRouter);
 
 // Set port, listen for requests
 const PORT = process.env.port || 8080;
