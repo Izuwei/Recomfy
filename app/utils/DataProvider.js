@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
+import {getBookmarks} from "./recApi";
+import {getUuid} from "./uuid";
+import axios from "axios";
+import config from "../../config.json";
 
 export const DataContext = React.createContext();
+
 
 export const DataProvider = ({ children }) => {
   const [recommendations, setRecommendations] = useState({
@@ -9,28 +14,7 @@ export const DataProvider = ({ children }) => {
     books: [],
     games: [],
     anime: [],
-    manga: [
-      {
-        key: "4",
-        type: "manga",
-        title: "Second life ranker",
-        image:
-          "https://www.anime-planet.com/images/manga/covers/38288.jpg?t=1628880491",
-        description:
-          "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
-        rating: "8/10",
-      },
-      {
-        key: "5",
-        type: "manga",
-        title: "Dark mortal",
-        image:
-          "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1602079904l/55589625._SX318_.jpg",
-        description:
-          "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
-        rating: "8/10",
-      },
-    ],
+    manga: [],
   });
   const [favorites, setFavorites] = useState({
     films: [],
@@ -38,32 +22,107 @@ export const DataProvider = ({ children }) => {
     books: [],
     games: [],
     anime: [],
-    manga: [
-      {
-        key: "4",
-        type: "manga",
-        title: "Second life ranker",
-        image:
-          "https://www.anime-planet.com/images/manga/covers/38288.jpg?t=1628880491",
-        description:
-          "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
-        rating: "8/10",
-      },
-      {
-        key: "5",
-        type: "manga",
-        title: "Dark mortal",
-        image:
-          "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1602079904l/55589625._SX318_.jpg",
-        description:
-          "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
-        rating: "8/10",
-      },
-    ],
+    manga: [],
   });
 
+  useEffect(() => {
+    async function fetchData() {
+      return await getBookmarks();
+    }
+    fetchData().then( (ret) => {
+      let fav = {};
+      fav.films = ret.filter( item => item.type == "movie");
+      fav.serials = ret.filter( item => item.type == "serial");
+      fav.books = ret.filter( item => item.type == "book");
+      fav.games = ret.filter( item => item.type == "game");
+      fav.anime = ret.filter( item => item.type == "anime");
+      fav.manga = ret.filter( item => item.type == "manga");
+      setFavorites(fav);
+    })
+  },[]);
+
+  const getCategoryName = (category) => {
+    switch (category) {
+      case "movie":
+        return "films";
+      case "serial":
+        return "serials";
+      case "game":
+        return "games";
+      case "book":
+        return "books";
+      case "anime":
+        return "anime";
+      case "manga":
+        return "manga";
+      default:
+        console.log("error - unknown category")
+    }
+  }
+
+  const addFavorite = async (title) => {
+    let uniqueId = await getUuid();
+
+    try {
+      const res = await axios.get(
+          config.api_url + ":" + config.api_port + "/recommendation/addBookmark",
+          {
+            params: {
+              itemId: title.key,
+              userId: uniqueId,
+              category: title.type,
+            },
+          }
+      );
+      let category_name = getCategoryName(title.type);
+      favorites[category_name].push(title);
+      setFavorites(favorites);
+    } catch (err) {
+      console.log("err");
+    }
+  }
+
+  const removeFavorite = async (title) => {
+    let uniqueId = await getUuid();
+
+    try {
+      const res = await axios.get(
+          config.api_url + ":" + config.api_port + "/recommendation/removeBookmark",
+          {
+            params: {
+              itemId: title.key,
+              userId: uniqueId,
+              category: title.type,
+            },
+          }
+      );
+      let category_name = getCategoryName(title.type);
+      for (let i = 0; i < favorites[category_name].length; i++) {
+        let fav = favorites[category_name][i];
+        if (fav.key == title.key)
+        {
+          favorites[category_name].splice(i, 1);
+          setFavorites(favorites);
+          return;
+        }
+      }
+      console.log("didnt remove... probably should never happen");
+    } catch (err) {
+      console.log("err");
+    }
+  }
+
   const isFavorite = (title) => {
-    console.log("Ahoj");
+    let id = title.key;
+    let category = title.type;
+    let category_name = getCategoryName(title.type);
+    for (const fav of favorites[category_name]) {
+      if(fav.key == id)
+      {
+        return true;
+      }
+    }
+    return false;
   };
 
   return (
@@ -72,6 +131,8 @@ export const DataProvider = ({ children }) => {
         recommendations: recommendations,
         favorites: favorites,
         isFavorite: isFavorite,
+        addFavorite: addFavorite,
+        removeFavorite: removeFavorite,
       }}
     >
       {children}

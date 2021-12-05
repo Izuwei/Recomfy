@@ -71,8 +71,6 @@ router.get("/getBookmarks", async (req, res) => {
         .catch((error) => {
             console.error(error);Q
         });
-
-    //res.json("OK");
 });
 
 router.get("/getRecommendations", async (req, res) => {
@@ -81,8 +79,6 @@ router.get("/getRecommendations", async (req, res) => {
   let userId = req.query.userId;
   let filter = "'type' == \""+category+"\" "
 
-  console.log(filter);
-
 
   await client.send(new rqs.RecommendItemsToUser(userId, 15, {
       'filter': filter,
@@ -90,33 +86,12 @@ router.get("/getRecommendations", async (req, res) => {
       'returnProperties': true
       }))
       .then((rec) => {
-        console.log(rec);
         res.json(rec);
       })
       .catch((error) => {
         console.error(error);
       });
-
-  //res.json("OK");
 });
 
-
-/*router.get("/addUser", async (req, res) => {
-  console.log("got addUser");
-  let userId = req.query.userId;
-  await client.send(new rqs.AddUser(userId))
-      .then(() => {})
-      .catch((error) => {
-        if (error.statusCode == 409) {
-          //ok
-        }
-        else
-        {
-          console.error(error);
-        }
-      });
-
-  res.json("OK");
-});*/
 
 module.exports = router;

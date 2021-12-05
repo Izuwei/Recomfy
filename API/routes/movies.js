@@ -36,7 +36,7 @@ router.get("/:id", async (req, res) => {
   try {
     let titleTMDB = await axios.get(
         "https://api.themoviedb.org/3/movie/"
-        +req.query.id
+        +req.params.id
         +"?api_key=" +
         config.keys.tmdb
     );

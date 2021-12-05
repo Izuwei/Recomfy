@@ -18,6 +18,7 @@ import { ThemeContext } from "../utils/ThemeProvider";
 import { HorizListItem as ListItem } from "../components/HorizListItem";
 import config from "../../config.json";
 import {getUuid} from "../utils/uuid";
+import {DataContext, DataProvider} from "../utils/DataProvider";
 
 
 const FavoriteButton = ({ onPress, theme, text, color, icon }) => (
@@ -48,36 +49,25 @@ const FavoriteButton = ({ onPress, theme, text, color, icon }) => (
   </TouchableOpacity>
 );
 
-const addFavorite = async (title) => {
-
-  let uniqueId = await getUuid();
-
-
-  console.log(uniqueId)
-
-  try {
-    const res = await axios.get(
-        config.api_url + ":" + config.api_port + "/recommendation/addBookmark",
-        {
-          params: {
-            itemId: title.key,
-            userId: uniqueId,
-            category: title.type,
-          },
-        }
-    );
-    console.log("ok");
-  } catch (err) {
-    console.log("err");
-  }
-};
 
 const ItemDetailScreen = ({ navigation, route }) => {
   const { t } = useTranslation();
   const { theme } = useContext(ThemeContext);
+  const { isFavorite, addFavorite, removeFavorite } = useContext(DataContext);
 
   const [similarContent, setSimilarContent] = useState([]);
+  const [isFavoriteState, setIsFavoriteState] = useState(isFavorite(route.params.data));
 
+  const favoriteButton = () => {
+    if(!isFavoriteState){
+      addFavorite(route.params.data);
+      setIsFavoriteState(true);
+    }
+    else {
+      removeFavorite(route.params.data);
+      setIsFavoriteState(false);
+    }
+  }
   const setSimilarFilms = async (title) => {
     try {
       const res = await axios.get(
@@ -163,11 +153,11 @@ const ItemDetailScreen = ({ navigation, route }) => {
             {route.params.data.rating}
           </Text>
           <FavoriteButton
-            onPress={() => addFavorite(route.params.data)}
+            onPress={() => favoriteButton()}
             theme={theme}
             /** FIXME: check if it is in "seen" list and replace 'true'*/
-            color={true ? theme.green : theme.red}
-            icon={true ? AddIcon : RemoveIcon}
+            color={!isFavoriteState ? theme.green : theme.red}
+            icon={!isFavoriteState ? AddIcon : RemoveIcon}
             text={t("Favorites").toUpperCase()}
           />
         </View>

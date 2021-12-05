@@ -1,10 +1,12 @@
 import "react-native-gesture-handler";
-import { StatusBar } from "expo-status-bar";
-import React from "react";
+import {StatusBar} from "expo-status-bar";
+import React, {useEffect, useState} from "react";
 
 import "./app/utils/i18n";
-import { ThemeProvider } from "./app/utils/ThemeProvider";
+import {ThemeProvider} from "./app/utils/ThemeProvider";
+import {DataProvider} from "./app/utils/DataProvider";
 import NavigationOverlay from "./app/components/NavigationOverlay";
+import {getBookmarks} from "./app/utils/recApi";
 
 /**Dummy */
 const fetchFilms = () => {
@@ -402,49 +404,14 @@ const fetchManga = () => {
   ];
 };
 
+
 export default function App() {
   return (
-    <ThemeProvider>
-      <StatusBar style="light" />
-      <NavigationOverlay
-        recommendations={{
-          films: fetchFilms(),
-          serials: fetchSerials(),
-          books: fetchBooks(),
-          games: fetchGames(),
-          anime: fetchAnime(),
-          manga: fetchManga(),
-        }}
-        favorites={{
-          films: fetchFilms(),
-          serials: fetchSerials(),
-          books: fetchBooks(),
-          games: fetchGames(),
-          anime: fetchAnime(),
-          manga: [
-            {
-              key: "4",
-              type: "manga",
-              title: "Second life ranker",
-              image:
-                "https://www.anime-planet.com/images/manga/covers/38288.jpg?t=1628880491",
-              description:
-                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
-              rating: "8/10",
-            },
-            {
-              key: "5",
-              type: "manga",
-              title: "Dark mortal",
-              image:
-                "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1602079904l/55589625._SX318_.jpg",
-              description:
-                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras elementum. Nullam sit amet magna in magna gravida vehicula. Praesent id justo in neque elementum ultrices. Nullam rhoncus aliquam metus. Donec iaculis gravida nulla. Nam quis nulla. Vivamus porttitor turpis ac leo. Vivamus ac leo pretium faucibus. Phasellus rhoncus. Fusce wisi. Maecenas fermentum, sem in pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.",
-              rating: "8/10",
-            },
-          ],
-        }}
-      />
-    </ThemeProvider>
+      <ThemeProvider>
+        <DataProvider>
+          <StatusBar style="light"/>
+          <NavigationOverlay/>
+        </DataProvider>
+      </ThemeProvider>
   );
 }
