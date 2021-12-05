@@ -48,7 +48,6 @@ export const HomeScreenNavigator = (data) => {
       <Stack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        initialParams={data.route.params}
         options={({ navigation }) => ({
           title: t("Home"),
         })}
@@ -91,7 +90,7 @@ export const GalleryScreenNavigator = (data) => {
       <Stack.Screen
         name="GalleryScreen"
         component={GalleryScreen}
-        initialParams={{ initialRouteName: "Films", data: data.route.params }}
+        initialParams={{ initialRouteName: "Films" }}
         options={() => ({
           title: t("Favorites"),
         })}

@@ -53,7 +53,6 @@ const BigButton = ({ children, onPress, color }) => (
 const NavBar = () => {
   const { t } = useTranslation();
   const { theme } = useContext(ThemeContext);
-  const { recommendations, favorites } = useContext(DataContext);
 
   const AppTheme = {
     ...DefaultTheme,
@@ -88,7 +87,6 @@ const NavBar = () => {
         <Tab.Screen
           name="Home"
           component={HomeScreenNavigator}
-          initialParams={recommendations}
           listeners={({ navigation }) => ({
             tabPress: (e) => {
               e.preventDefault();
@@ -154,7 +152,6 @@ const NavBar = () => {
         <Tab.Screen
           name="Gallery"
           component={GalleryScreenNavigator}
-          initialParams={favorites}
           listeners={({ navigation }) => ({
             tabPress: (e) => {
               e.preventDefault();

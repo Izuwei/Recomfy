@@ -13,6 +13,7 @@ import {
 
 import geometry from "../constants/geometry";
 import { HorizListItem as ListItem } from "../components/HorizListItem";
+import { DataContext } from "../utils/DataProvider";
 import { ThemeContext } from "../utils/ThemeProvider";
 
 const ListButton = ({ onPress, theme }) => (
@@ -35,31 +36,32 @@ const ListButton = ({ onPress, theme }) => (
 const HomeScreen = ({ navigation, route }) => {
   const { t } = useTranslation();
   const { theme } = useContext(ThemeContext);
+  const { recommendations } = useContext(DataContext);
 
   const SECTIONS = [
     {
       title: "Films",
-      data: route.params.films,
+      data: recommendations.films,
     },
     {
       title: "Serials",
-      data: route.params.serials,
+      data: recommendations.serials,
     },
     {
       title: "Books",
-      data: route.params.books,
+      data: recommendations.books,
     },
     {
       title: "Games",
-      data: route.params.games,
+      data: recommendations.games,
     },
     {
       title: "Anime",
-      data: route.params.anime,
+      data: recommendations.anime,
     },
     {
       title: "Manga",
-      data: route.params.manga,
+      data: recommendations.manga,
     },
   ];
 
@@ -101,7 +103,7 @@ const HomeScreen = ({ navigation, route }) => {
                   theme={theme}
                   onPress={() =>
                     navigation.navigate("GalleryScreen", {
-                      data: route.params,
+                      data: recommendations,
                       initialRouteName: section.title,
                     })
                   }
