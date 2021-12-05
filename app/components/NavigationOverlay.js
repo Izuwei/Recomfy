@@ -5,6 +5,7 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
 import { ThemeContext } from "../utils/ThemeProvider";
+import { DataContext } from "../utils/DataProvider";
 import {
   HomeScreenNavigator,
   SearchScreenNavigator,
@@ -49,9 +50,10 @@ const BigButton = ({ children, onPress, color }) => (
   </TouchableOpacity>
 );
 
-const NavBar = ({ recommendations, favorites }) => {
+const NavBar = () => {
   const { t } = useTranslation();
   const { theme } = useContext(ThemeContext);
+  const { recommendations, favorites } = useContext(DataContext);
 
   const AppTheme = {
     ...DefaultTheme,
