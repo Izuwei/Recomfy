@@ -4,40 +4,6 @@ const router = express.Router();
 const axios = require("axios");
 const config = require("../config.json");
 
-router.get("/:id", async (req, res) => {
-  try {
-    const rawgData = await axios.get(
-      "https://api.rawg.io/api/games/" +
-        req.params.id +
-        "?key=" +
-        config.keys.rawg
-    );
-    const title = rawgData.data;
-
-    let tags = [];
-    title.tags.forEach((tag) => {
-      if (tag.language === "eng") {
-        tags.push(tag.name);
-      }
-    });
-
-    const result = {
-      id: title.id,
-      name: title.name,
-      image: title.background_image,
-      description: title.description_raw,
-      rating: title.rating,
-      rating_top: title.rating_top,
-      released: title.released,
-      updated: title.updated,
-      tags: tags,
-    };
-    res.json(result);
-  } catch (err) {
-    res.json([]);
-  }
-});
-
 router.get("/search", async (req, res) => {
   try {
     const rawgData = await axios.get(
@@ -82,6 +48,40 @@ router.get("/search", async (req, res) => {
       });
     }
     res.json(results);
+  } catch (err) {
+    res.json([]);
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  try {
+    const rawgData = await axios.get(
+      "https://api.rawg.io/api/games/" +
+        req.params.id +
+        "?key=" +
+        config.keys.rawg
+    );
+    const title = rawgData.data;
+
+    let tags = [];
+    title.tags.forEach((tag) => {
+      if (tag.language === "eng") {
+        tags.push(tag.name);
+      }
+    });
+
+    const result = {
+      id: title.id,
+      name: title.name,
+      image: title.background_image,
+      description: title.description_raw,
+      rating: title.rating,
+      rating_top: title.rating_top,
+      released: title.released,
+      updated: title.updated,
+      tags: tags,
+    };
+    res.json(result);
   } catch (err) {
     res.json([]);
   }
