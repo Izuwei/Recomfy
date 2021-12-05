@@ -32,6 +32,32 @@ router.get("/search", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    let titleTMDB = await axios.get(
+        "https://api.themoviedb.org/3/movie/"
+        +req.query.id
+        +"?api_key=" +
+        config.keys.tmdb
+    );
+    let title = titleTMDB.data
+
+    const result = {
+      id: title.id,
+      name: title.title,
+      original_name: title.original_title,
+      image: "https://image.tmdb.org/t/p/original" + title.poster_path,
+      overview: title.overview,
+      released: title.release_date,
+      rating: title.vote_average,
+      rating_top: 10,
+    };
+    res.json(result);
+  } catch (err) {
+    res.json([]);
+  }
+});
+
 router.get("/similar/:id", async (req, res) => {
   try {
     const tmdbData = await axios.get(
