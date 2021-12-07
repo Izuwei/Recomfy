@@ -53,9 +53,7 @@ const ItemDetailScreen = ({ navigation, route }) => {
   const { isFavorite, addFavorite, removeFavorite } = useContext(DataContext);
 
   const [similarContent, setSimilarContent] = useState([]);
-  const [isFavoriteState, setIsFavoriteState] = useState(
-    isFavorite(route.params.data)
-  );
+  const [isFavoriteState, setIsFavoriteState] = useState(null);
 
   const favoriteButton = () => {
     if (!isFavoriteState) {
@@ -114,7 +112,7 @@ const ItemDetailScreen = ({ navigation, route }) => {
 
   useEffect(() => {
     setIsFavoriteState(isFavorite(route.params.data));
-  });
+  }, [route.params.data]);
 
   useEffect(() => {
     switch (route.params.data.type) {
