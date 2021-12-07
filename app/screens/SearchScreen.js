@@ -36,7 +36,7 @@ const searchMovies = async (name) => {
         type: "movie",
         title: title.name,
         image: title.image,
-        description: title.overview,
+        description: title.description,
         rating: title.rating + "/" + title.rating_top,
       });
     });
@@ -67,7 +67,7 @@ const searchSerials = async (name) => {
         type: "serial",
         title: title.name,
         image: title.image,
-        description: title.overview,
+        description: title.description,
         rating: title.rating + "/" + title.rating_top,
       });
     });

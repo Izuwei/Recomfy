@@ -81,7 +81,7 @@ const ItemDetailScreen = ({ navigation, route }) => {
           type: title.type,
           title: item.name,
           image: item.image,
-          description: item.overview,
+          description: item.description,
           rating: item.rating + "/" + item.rating_top,
         });
       });
@@ -104,7 +104,7 @@ const ItemDetailScreen = ({ navigation, route }) => {
           type: title.type,
           title: item.name,
           image: item.image,
-          description: item.overview,
+          description: item.description,
           rating: item.rating + "/" + item.rating_top,
         });
       });
