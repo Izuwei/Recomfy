@@ -5,6 +5,7 @@ import { ThemeContext } from "../utils/ThemeProvider";
 
 const HorizListItem = ({ navigation, item }) => {
   const { theme } = useContext(ThemeContext);
+  const itemWidth = 100;
 
   return (
     <TouchableOpacity
@@ -20,10 +21,13 @@ const HorizListItem = ({ navigation, item }) => {
           source={{
             uri: item.image,
           }}
-          style={styles.itemPhoto}
+          style={[styles.itemPhoto, { width: itemWidth }]}
           resizeMode="cover"
         />
-        <Text style={[styles.itemText, { color: theme.text }]}>
+        <Text
+          numberOfLines={1}
+          style={[styles.itemText, { color: theme.text, width: itemWidth }]}
+        >
           {item.title}
         </Text>
       </View>
@@ -44,7 +48,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
   },
   itemPhoto: {
-    width: 100,
     height: 130,
     borderRadius: 5,
   },

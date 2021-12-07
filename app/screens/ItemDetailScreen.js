@@ -17,9 +17,7 @@ import RemoveIcon from "../assets/icons/remove-icon.png";
 import { ThemeContext } from "../utils/ThemeProvider";
 import { HorizListItem as ListItem } from "../components/HorizListItem";
 import config from "../../config.json";
-import {getUuid} from "../utils/uuid";
-import {DataContext, DataProvider} from "../utils/DataProvider";
-
+import { DataContext, DataProvider } from "../utils/DataProvider";
 
 const FavoriteButton = ({ onPress, theme, text, color, icon }) => (
   <TouchableOpacity onPress={onPress}>
@@ -49,25 +47,25 @@ const FavoriteButton = ({ onPress, theme, text, color, icon }) => (
   </TouchableOpacity>
 );
 
-
 const ItemDetailScreen = ({ navigation, route }) => {
   const { t } = useTranslation();
   const { theme } = useContext(ThemeContext);
   const { isFavorite, addFavorite, removeFavorite } = useContext(DataContext);
 
   const [similarContent, setSimilarContent] = useState([]);
-  const [isFavoriteState, setIsFavoriteState] = useState(isFavorite(route.params.data));
+  const [isFavoriteState, setIsFavoriteState] = useState(
+    isFavorite(route.params.data)
+  );
 
   const favoriteButton = () => {
-    if(!isFavoriteState){
+    if (!isFavoriteState) {
       addFavorite(route.params.data);
       setIsFavoriteState(true);
-    }
-    else {
+    } else {
       removeFavorite(route.params.data);
       setIsFavoriteState(false);
     }
-  }
+  };
   const setSimilarFilms = async (title) => {
     try {
       const res = await axios.get(
@@ -113,6 +111,10 @@ const ItemDetailScreen = ({ navigation, route }) => {
       setSimilarContent([]);
     }
   };
+
+  useEffect(() => {
+    setIsFavoriteState(isFavorite(route.params.data));
+  });
 
   useEffect(() => {
     switch (route.params.data.type) {
