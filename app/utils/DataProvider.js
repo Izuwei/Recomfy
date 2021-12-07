@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {getBookmarks} from "./recApi";
+import {getBookmarks, getRecommendations} from "./recApi";
 import {getUuid} from "./uuid";
 import axios from "axios";
 import config from "../../config.json";
@@ -39,6 +39,20 @@ export const DataProvider = ({ children }) => {
       fav.manga = ret.filter( item => item.type == "manga");
       setFavorites(fav);
     })
+    async function fetchDataRec() {
+      return await getRecommendations();
+    }
+    fetchDataRec().then( (ret) => {
+      let rec = {};
+      rec.films = ret.movie;
+      rec.serials = ret.serial;
+      rec.books = ret.book;
+      rec.games = ret.game;
+      rec.anime = ret.anime;
+      rec.manga = ret.manga;
+      setRecommendations(rec);
+    })
+
   },[]);
 
   const getCategoryName = (category) => {

@@ -72,10 +72,9 @@ export const getRecommendations = async () => {
                     },
                 }
             );
-            console.log(res.data);
             var data = [];
-            for (const item of res.data) {
-                let split = item.itemId.split('_');
+            for (const item of res.data.recomms) {
+                let split = item.id.split('_');
                 let category = split[0];
                 let id = split.slice(1).join("_");
                 let detail = null;
