@@ -133,11 +133,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   sectionHeader: {
+    marginTop: 3,
+    marginBottom: 8,
     marginRight: 10,
     marginLeft: 10,
     fontSize: 18,
     fontWeight: "bold",
-    marginBottom: 5,
     textAlign: "center",
   },
   line: {
