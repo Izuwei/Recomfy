@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React, { memo, useContext } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 
 import { ThemeContext } from "../utils/ThemeProvider";
 
-const HorizListItem = ({ navigation, item }) => {
+const HorizListItem = memo(({ navigation, item }) => {
   const { theme } = useContext(ThemeContext);
   const itemWidth = 100;
 
@@ -33,7 +33,7 @@ const HorizListItem = ({ navigation, item }) => {
       </View>
     </TouchableOpacity>
   );
-};
+});
 
 const styles = StyleSheet.create({
   item: {

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { memo, useContext } from "react";
 import { TouchableOpacity, Image } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useTranslation } from "react-i18next";
@@ -9,6 +9,7 @@ import GalleryScreen from "../screens/GalleryScreen";
 import SearchScreen from "../screens/SearchScreen";
 import ItemDetailScreen from "../screens/ItemDetailScreen";
 import SettingsScreen from "../screens/SettingsScreen";
+import { DataContext } from "../utils/DataProvider";
 
 const Stack = createStackNavigator();
 
@@ -37,7 +38,7 @@ const screenOptions = ({ navigation }, theme) => ({
   ),
 });
 
-export const HomeScreenNavigator = (data) => {
+export const HomeScreenNavigator = memo((data) => {
   const { t } = useTranslation();
   const { theme } = useContext(ThemeContext);
 
@@ -77,11 +78,12 @@ export const HomeScreenNavigator = (data) => {
       />
     </Stack.Navigator>
   );
-};
+});
 
-export const GalleryScreenNavigator = (data) => {
+export const GalleryScreenNavigator = memo(() => {
   const { t } = useTranslation();
   const { theme } = useContext(ThemeContext);
+  const { favorites } = useContext(DataContext);
 
   return (
     <Stack.Navigator
@@ -90,7 +92,7 @@ export const GalleryScreenNavigator = (data) => {
       <Stack.Screen
         name="GalleryScreen"
         component={GalleryScreen}
-        initialParams={{ initialRouteName: "Films" }}
+        initialParams={{ initialRouteName: "Films", data: favorites }}
         options={() => ({
           title: t("Favorites"),
         })}
@@ -112,9 +114,9 @@ export const GalleryScreenNavigator = (data) => {
       />
     </Stack.Navigator>
   );
-};
+});
 
-export const SearchScreenNavigator = () => {
+export const SearchScreenNavigator = memo(() => {
   const { t } = useTranslation();
   const { theme } = useContext(ThemeContext);
 
@@ -146,4 +148,4 @@ export const SearchScreenNavigator = () => {
       />
     </Stack.Navigator>
   );
-};
+});

@@ -1,5 +1,5 @@
 import { Picker } from "@react-native-picker/picker";
-import React, { useState } from "react";
+import React, { memo, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
@@ -13,7 +13,7 @@ import {
 
 import { ThemeContext } from "../utils/ThemeProvider";
 
-const SettingsScreen = () => {
+const SettingsScreen = memo(() => {
   const { t, i18n } = useTranslation();
   const { theme, changeTheme } = React.useContext(ThemeContext);
 
@@ -24,14 +24,17 @@ const SettingsScreen = () => {
   const [enabledAnime, setEnabledAnime] = useState(true);
   const [enabledManga, setEnabledManga] = useState(true);
 
-  const storeLang = async (value) => {
-    i18n.changeLanguage(value);
-    try {
-      await AsyncStorage.setItem("lang", value);
-    } catch (e) {
-      console.log("Unable to store language!");
-    }
-  };
+  const storeLang = useCallback(
+    async (value) => {
+      i18n.changeLanguage(value);
+      try {
+        await AsyncStorage.setItem("lang", value);
+      } catch (err) {
+        console.log("Unable to store language!");
+      }
+    },
+    [i18n]
+  );
 
   return (
     <SafeAreaView>
@@ -205,7 +208,7 @@ const SettingsScreen = () => {
       </ScrollView>
     </SafeAreaView>
   );
-};
+});
 
 const styles = StyleSheet.create({
   sectionHeader: {

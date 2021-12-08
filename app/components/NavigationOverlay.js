@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { memo, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
@@ -50,9 +50,10 @@ const BigButton = ({ children, onPress, color }) => (
   </TouchableOpacity>
 );
 
-const NavBar = () => {
+const NavBar = memo(() => {
   const { t } = useTranslation();
   const { theme } = useContext(ThemeContext);
+  const { favorites } = useContext(DataContext);
 
   const AppTheme = {
     ...DefaultTheme,
@@ -152,6 +153,7 @@ const NavBar = () => {
         <Tab.Screen
           name="Gallery"
           component={GalleryScreenNavigator}
+          initialParams={{ data: favorites }}
           listeners={({ navigation }) => ({
             tabPress: (e) => {
               e.preventDefault();
@@ -191,6 +193,6 @@ const NavBar = () => {
       </Tab.Navigator>
     </NavigationContainer>
   );
-};
+});
 
 export default NavBar;

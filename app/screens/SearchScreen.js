@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { memo, useCallback, useContext, useState } from "react";
 import {
   View,
   Text,
@@ -135,7 +135,7 @@ const SearchButton = ({ onPress, theme }) => (
   </TouchableOpacity>
 );
 
-const SearchScreen = ({ navigation, route }) => {
+const SearchScreen = memo(({ navigation, route }) => {
   const { t } = useTranslation();
   const { theme } = useContext(ThemeContext);
 
@@ -144,7 +144,7 @@ const SearchScreen = ({ navigation, route }) => {
 
   const [results, setResults] = useState([]);
 
-  const search = async () => {
+  const search = useCallback(async () => {
     Keyboard.dismiss();
 
     switch (category) {
@@ -163,7 +163,7 @@ const SearchScreen = ({ navigation, route }) => {
       default:
         setResults([]);
     }
-  };
+  }, [category, titleName]);
 
   return (
     <View style={styles.container}>
@@ -233,7 +233,7 @@ const SearchScreen = ({ navigation, route }) => {
       <TileGrid navigation={navigation} data={results} />
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {

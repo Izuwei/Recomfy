@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useCallback, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import lightTheme from "../constants/theme/light";
@@ -7,7 +7,7 @@ import yellowTheme from "../constants/theme/yellow";
 
 export const ThemeContext = React.createContext();
 
-export const ThemeProvider = ({ children }) => {
+export const ThemeProvider = memo(({ children }) => {
   const [theme, setTheme] = useState(async () => {
     const storedTheme = await AsyncStorage.getItem("theme");
 
@@ -26,7 +26,7 @@ export const ThemeProvider = ({ children }) => {
     }
   });
 
-  const changeTheme = async (newTheme) => {
+  const changeTheme = useCallback(async (newTheme) => {
     try {
       await AsyncStorage.setItem("theme", newTheme);
     } catch (e) {
@@ -46,7 +46,7 @@ export const ThemeProvider = ({ children }) => {
       default:
         setTheme({ name: "light", ...lightTheme });
     }
-  };
+  }, []);
 
   return (
     <ThemeContext.Provider
@@ -58,4 +58,4 @@ export const ThemeProvider = ({ children }) => {
       {children}
     </ThemeContext.Provider>
   );
-};
+});

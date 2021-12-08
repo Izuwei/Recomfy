@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {
+  memo,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import {
@@ -11,13 +17,13 @@ import {
   FlatList,
 } from "react-native";
 
-import geometry from "../constants/geometry";
+import measures from "../constants/measures";
 import AddIcon from "../assets/icons/plus-icon.png";
 import RemoveIcon from "../assets/icons/remove-icon.png";
 import { ThemeContext } from "../utils/ThemeProvider";
 import { HorizListItem as ListItem } from "../components/HorizListItem";
 import config from "../../config.json";
-import { DataContext, DataProvider } from "../utils/DataProvider";
+import { DataContext } from "../utils/DataProvider";
 
 const FavoriteButton = ({ onPress, theme, text, color, icon }) => (
   <TouchableOpacity onPress={onPress}>
@@ -47,7 +53,7 @@ const FavoriteButton = ({ onPress, theme, text, color, icon }) => (
   </TouchableOpacity>
 );
 
-const ItemDetailScreen = ({ navigation, route }) => {
+const ItemDetailScreen = memo(({ navigation, route }) => {
   const { t } = useTranslation();
   const { theme } = useContext(ThemeContext);
   const { isFavorite, addFavorite, removeFavorite } = useContext(DataContext);
@@ -55,7 +61,7 @@ const ItemDetailScreen = ({ navigation, route }) => {
   const [similarContent, setSimilarContent] = useState([]);
   const [isFavoriteState, setIsFavoriteState] = useState(null);
 
-  const favoriteButton = () => {
+  const favoriteButton = useCallback(() => {
     if (!isFavoriteState) {
       addFavorite(route.params.data);
       setIsFavoriteState(true);
@@ -63,8 +69,9 @@ const ItemDetailScreen = ({ navigation, route }) => {
       removeFavorite(route.params.data);
       setIsFavoriteState(false);
     }
-  };
-  const setSimilarFilms = async (title) => {
+  }, [isFavoriteState]);
+
+  const setSimilarFilms = useCallback(async (title) => {
     try {
       const res = await axios.get(
         config.api_url + ":" + config.api_port + "/movies/similar/" + title.key
@@ -85,9 +92,9 @@ const ItemDetailScreen = ({ navigation, route }) => {
     } catch (err) {
       setSimilarContent([]);
     }
-  };
+  }, []);
 
-  const setSimilarSerials = async (title) => {
+  const setSimilarSerials = useCallback(async (title) => {
     try {
       const res = await axios.get(
         config.api_url + ":" + config.api_port + "/serials/similar/" + title.key
@@ -108,7 +115,7 @@ const ItemDetailScreen = ({ navigation, route }) => {
     } catch (err) {
       setSimilarContent([]);
     }
-  };
+  }, []);
 
   useEffect(() => {
     setIsFavoriteState(isFavorite(route.params.data));
@@ -194,10 +201,10 @@ const ItemDetailScreen = ({ navigation, route }) => {
           showsHorizontalScrollIndicator={false}
         />
       </View>
-      <View style={{ height: geometry.navBarHeight }} />
+      <View style={{ height: measures.navBarHeight }} />
     </ScrollView>
   );
-};
+});
 
 const styles = StyleSheet.create({
   title: {

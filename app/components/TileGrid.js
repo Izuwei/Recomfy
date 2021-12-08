@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import geometry from "../constants/geometry";
+import measures from "../constants/measures";
 import { ThemeContext } from "../utils/ThemeProvider";
 
 const TileGrid = ({ navigation, data }) => {
@@ -19,7 +19,7 @@ const TileGrid = ({ navigation, data }) => {
       itemDimension={100}
       data={data}
       style={styles.gridView}
-      ListFooterComponent={<View style={{ height: geometry.navBarHeight }} />}
+      ListFooterComponent={<View style={{ height: measures.navBarHeight }} />}
       // staticDimension={300}
       // fixed
       spacing={10}

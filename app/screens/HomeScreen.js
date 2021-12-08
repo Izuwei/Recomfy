@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { memo, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import {
   StyleSheet,
@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import geometry from "../constants/geometry";
+import measures from "../constants/measures";
 import { HorizListItem as ListItem } from "../components/HorizListItem";
 import { DataContext } from "../utils/DataProvider";
 import { ThemeContext } from "../utils/ThemeProvider";
@@ -33,7 +33,7 @@ const ListButton = ({ onPress, theme }) => (
   </TouchableOpacity>
 );
 
-const HomeScreen = ({ navigation, route }) => {
+const HomeScreen = memo(({ navigation, route }) => {
   const { t } = useTranslation();
   const { theme } = useContext(ThemeContext);
   const { recommendations } = useContext(DataContext);
@@ -73,7 +73,7 @@ const HomeScreen = ({ navigation, route }) => {
           stickySectionHeadersEnabled={false}
           sections={SECTIONS}
           ListFooterComponent={
-            <View style={{ height: geometry.navBarHeight }} />
+            <View style={{ height: measures.navBarHeight }} />
           }
           renderSectionHeader={({ section }) => (
             <>
@@ -125,7 +125,7 @@ const HomeScreen = ({ navigation, route }) => {
       </SafeAreaView>
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {
