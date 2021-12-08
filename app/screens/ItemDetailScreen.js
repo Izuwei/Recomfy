@@ -117,6 +117,52 @@ const ItemDetailScreen = memo(({ navigation, route }) => {
     }
   }, []);
 
+  const setSimilarAnime = useCallback(async (title) => {
+    try {
+      const res = await axios.get(
+          config.api_url + ":" + config.api_port + "/anime/similar/" + title.key
+      );
+
+      var data = [];
+      res.data.forEach((item) => {
+        data.push({
+          key: item.id.toString(),
+          type: title.type,
+          title: item.name,
+          image: item.image,
+          description: item.description,
+          rating: item.rating + "/" + item.rating_top,
+        });
+      });
+      setSimilarContent(data);
+    } catch (err) {
+      setSimilarContent([]);
+    }
+  }, []);
+
+  const setSimilarManga = useCallback(async (title) => {
+    try {
+      const res = await axios.get(
+          config.api_url + ":" + config.api_port + "/manga/similar/" + title.key
+      );
+
+      var data = [];
+      res.data.forEach((item) => {
+        data.push({
+          key: item.id.toString(),
+          type: title.type,
+          title: item.name,
+          image: item.image,
+          description: item.description,
+          rating: item.rating + "/" + item.rating_top,
+        });
+      });
+      setSimilarContent(data);
+    } catch (err) {
+      setSimilarContent([]);
+    }
+  }, []);
+
   useEffect(() => {
     setIsFavoriteState(isFavorite(route.params.data));
   }, [route.params.data]);
@@ -128,6 +174,12 @@ const ItemDetailScreen = memo(({ navigation, route }) => {
         break;
       case "serial":
         setSimilarSerials(route.params.data);
+        break;
+      case "anime":
+        setSimilarAnime(route.params.data);
+        break;
+      case "manga":
+        setSimilarManga(route.params.data);
         break;
       default:
         setSimilarContent([]);

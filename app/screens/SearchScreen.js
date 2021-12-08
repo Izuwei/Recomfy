@@ -109,6 +109,99 @@ const searchGames = async (name) => {
   }
 };
 
+const searchBooks = async (name) => {
+  const convertedName = name.replace(/\s+/g, "+");
+
+  try {
+    const res = await axios.get(
+        config.api_url + ":" + config.api_port + "/books/search",
+        {
+          params: {
+            name: convertedName,
+          },
+        }
+    );
+
+    var data = [];
+    res.data.forEach((title) => {
+      data.push({
+        key: title.id,
+        type: "book",
+        title: title.name,
+        image: title.image,
+        description: title.description,
+        rating: title.rating + "/" + title.rating_top,
+      });
+    });
+
+    return data;
+  } catch (err) {
+    return [];
+  }
+};
+
+const searchAnime = async (name) => {
+  const convertedName = name.replace(/\s+/g, "+");
+
+  try {
+    const res = await axios.get(
+        config.api_url + ":" + config.api_port + "/anime/search",
+        {
+          params: {
+            name: convertedName,
+          },
+        }
+    );
+
+    var data = [];
+    res.data.forEach((title) => {
+      data.push({
+        key: title.id,
+        type: "anime",
+        title: title.name,
+        image: title.image,
+        description: title.description,
+        rating: title.rating + "/" + title.rating_top,
+      });
+    });
+
+    return data;
+  } catch (err) {
+    return [];
+  }
+};
+
+const searchManga = async (name) => {
+  const convertedName = name.replace(/\s+/g, "+");
+
+  try {
+    const res = await axios.get(
+        config.api_url + ":" + config.api_port + "/manga/search",
+        {
+          params: {
+            name: convertedName,
+          },
+        }
+    );
+
+    var data = [];
+    res.data.forEach((title) => {
+      data.push({
+        key: title.id,
+        type: "manga",
+        title: title.name,
+        image: title.image,
+        description: title.description,
+        rating: title.rating + "/" + title.rating_top,
+      });
+    });
+
+    return data;
+  } catch (err) {
+    return [];
+  }
+};
+
 const SearchButton = ({ onPress, theme }) => (
   <TouchableOpacity onPress={onPress}>
     <View
@@ -159,6 +252,18 @@ const SearchScreen = memo(({ navigation, route }) => {
       case "games":
         const games = await searchGames(titleName);
         setResults(games);
+        break;
+      case "books":
+        const books = await searchBooks(titleName);
+        setResults(books);
+        break;
+      case "anime":
+        const anime = await searchAnime(titleName);
+        setResults(anime);
+        break;
+      case "manga":
+        const manga = await searchManga(titleName);
+        setResults(manga);
         break;
       default:
         setResults([]);

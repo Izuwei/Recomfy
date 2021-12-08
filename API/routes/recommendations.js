@@ -26,7 +26,6 @@ router.get("/addBookmark", async (req, res) => {
       client.send(
         new rqs.SetItemValues(itemId, {
           type: category,
-          realId: req.query.itemId,
         })
       );
     })

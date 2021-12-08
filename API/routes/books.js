@@ -10,18 +10,20 @@ router.get("/search", async (req, res) => {
         const bookData = await axios.get(
             "https://www.googleapis.com/books/v1/volumes"
             +"?q=" + req.query.name
+            +"&lang_restrict=en"
         );
 
         let results = [];
         bookData.data.items.forEach((title) => {
+            console.log(title.volumeInfo.averageRating)
             results.push({
                 id: title.id,
                 name: title.volumeInfo.title,
                 original_name: title.volumeInfo.title,
                 image: title.volumeInfo.imageLinks?.thumbnail ?? 'image not found',
                 description: title.volumeInfo.description,
-                released: title.publishedDate,
-                rating: title.averageRating*2, //max is 5
+                released: title.volumeInfo.publishedDate,
+                rating: title.volumeInfo.averageRating*2, //max is 5
                 rating_top: 10,
             });
         });
