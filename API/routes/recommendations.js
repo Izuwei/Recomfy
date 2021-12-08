@@ -97,7 +97,7 @@ router.get("/getRecommendations", async (req, res) => {
 
   await client
     .send(
-      new rqs.RecommendItemsToUser(userId, 15, {
+      new rqs.RecommendItemsToUser(userId, 18, {
         filter: filter,
         scenario: "homepage",
         returnProperties: true,
