@@ -21,7 +21,7 @@ const getCategoryName = (category) => {
     case "manga":
       return "manga";
     default:
-      console.log("error - unknown category");
+      console.log("Error: Unknown category.");
   }
 };
 
@@ -88,13 +88,13 @@ export const DataProvider = memo(({ children }) => {
       );
 
       let category_name = getCategoryName(title.type);
-      console.log(category_name);
+
       setFavorites((state) => {
         state[category_name].push(title);
         return state;
       });
     } catch (err) {
-      console.log("err");
+      console.log("Unable to store into favorites.");
     }
   }, []);
 
@@ -127,9 +127,8 @@ export const DataProvider = memo(({ children }) => {
             return;
           }
         }
-        console.log("didnt remove... probably should never happen");
       } catch (err) {
-        console.log("err");
+        console.log("Unable to remove title from favorites.");
       }
     },
     [favorites]
