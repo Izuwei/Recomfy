@@ -12,6 +12,7 @@ var client = new recombee.ApiClient(config.keys.recombee_db, config.keys.recombe
 
 router.get("/addBookmark", async (req, res) => {
   console.log("got add");
+    console.log(req.query.userId);
   let category = req.query.category;
   let itemId = category+"_"+ req.query.itemId;
   let userId = req.query.userId;
@@ -29,11 +30,12 @@ router.get("/addBookmark", async (req, res) => {
         }
       });
 
-  await client.send(new rqs.AddBookmark(userId, itemId, {
+  const rest = await client.send(new rqs.AddBookmark(userId, itemId, {
     // optional parameters:
       'cascadeCreate': true,//will create user or item if missing in DB
       }))
-      .then(() => {})
+      .then(() => {
+      })
       .catch((error) => {
         if (error.statusCode == 409) {
           //ok
@@ -49,6 +51,7 @@ router.get("/addBookmark", async (req, res) => {
 
 router.get("/removeBookmark", async (req, res) => {
   console.log("got remove");
+    console.log(req.query.userId);
   let category = req.query.category;
   let itemId = category+"_"+ req.query.itemId
   let userId = req.query.userId;
@@ -64,6 +67,7 @@ router.get("/removeBookmark", async (req, res) => {
 router.get("/getBookmarks", async (req, res) => {
     console.log("got get bookmarks");
     let userId = req.query.userId;
+    console.log(req.query.userId);
     await client.send(new rqs.ListUserBookmarks(userId))
         .then((rec) => {
             res.json(rec);

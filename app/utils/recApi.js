@@ -32,6 +32,15 @@ export const getBookmarks = async () => {
                 case "game":
                     detail = await get_game_detail(id);
                     break;
+                case "book":
+                    detail = await get_book_detail(id);
+                    break;
+                case "anime":
+                    detail = await get_anime_detail(id);
+                    break;
+                case "manga":
+                    detail = await get_manga_detail(id);
+                    break;
                 default:
                     console.log("error - unknown category")
             }
@@ -89,10 +98,13 @@ export const getRecommendations = async () => {
                         detail = await get_game_detail(id);
                         break;
                     case "book":
+                        detail = await get_book_detail(id);
                         break;
                     case "anime":
+                        detail = await get_anime_detail(id);
                         break;
                     case "manga":
+                        detail = await get_manga_detail(id);
                         break;
                     default:
                         console.log("error - unknown category")
@@ -146,6 +158,39 @@ async function get_game_detail(id) {
     try {
         const res = await axios.get(
             config.api_url + ":" + config.api_port + "/games/" +id);
+        return res.data;
+    } catch (err) {
+        console.log("err");
+        return null;
+    }
+}
+
+async function get_book_detail(id) {
+    try {
+        const res = await axios.get(
+            config.api_url + ":" + config.api_port + "/books/" +id);
+        return res.data;
+    } catch (err) {
+        console.log("err");
+        return null;
+    }
+}
+
+async function get_anime_detail(id) {
+    try {
+        const res = await axios.get(
+            config.api_url + ":" + config.api_port + "/anime/" +id);
+        return res.data;
+    } catch (err) {
+        console.log("err");
+        return null;
+    }
+}
+
+async function get_manga_detail(id) {
+    try {
+        const res = await axios.get(
+            config.api_url + ":" + config.api_port + "/manga/" +id);
         return res.data;
     } catch (err) {
         console.log("err");
