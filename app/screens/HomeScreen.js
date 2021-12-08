@@ -113,6 +113,7 @@ const HomeScreen = memo(({ navigation, route }) => {
               <FlatList
                 horizontal
                 data={section.data}
+                style={{ marginBottom: -18 }}
                 renderItem={({ item }) => (
                   <ListItem navigation={navigation} item={item} />
                 )}

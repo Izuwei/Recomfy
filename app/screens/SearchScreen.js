@@ -114,12 +114,12 @@ const searchBooks = async (name) => {
 
   try {
     const res = await axios.get(
-        config.api_url + ":" + config.api_port + "/books/search",
-        {
-          params: {
-            name: convertedName,
-          },
-        }
+      config.api_url + ":" + config.api_port + "/books/search",
+      {
+        params: {
+          name: convertedName,
+        },
+      }
     );
 
     var data = [];
@@ -145,12 +145,12 @@ const searchAnime = async (name) => {
 
   try {
     const res = await axios.get(
-        config.api_url + ":" + config.api_port + "/anime/search",
-        {
-          params: {
-            name: convertedName,
-          },
-        }
+      config.api_url + ":" + config.api_port + "/anime/search",
+      {
+        params: {
+          name: convertedName,
+        },
+      }
     );
 
     var data = [];
@@ -176,12 +176,12 @@ const searchManga = async (name) => {
 
   try {
     const res = await axios.get(
-        config.api_url + ":" + config.api_port + "/manga/search",
-        {
-          params: {
-            name: convertedName,
-          },
-        }
+      config.api_url + ":" + config.api_port + "/manga/search",
+      {
+        params: {
+          name: convertedName,
+        },
+      }
     );
 
     var data = [];
@@ -314,6 +314,7 @@ const SearchScreen = memo(({ navigation, route }) => {
               height: 30,
               textAlign: "center",
               color: theme.text,
+              marginLeft: -10,
             }}
           >
             <Picker.Item label={t("Films")} value="films" />
