@@ -6,7 +6,6 @@ const config = require("../config.json");
 
 router.get("/search", async (req, res) => {
   try {
-    console.log("got search anime");
     const malData = await axios.get(
       "https://api.myanimelist.net/v2/anime?q=" +
         req.query.name +

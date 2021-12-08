@@ -69,7 +69,6 @@ router.get("/removeBookmark", async (req, res) => {
     .then(() => {})
     .catch((error) => {
       console.error(error);
-      Q;
     });
 
   res.json("OK");
@@ -79,7 +78,6 @@ router.get("/getBookmarks", async (req, res) => {
   console.log("Recieved bookmarks.");
 
   let userId = req.query.userId;
-  console.log(req.query.userId);
   await client
     .send(new rqs.ListUserBookmarks(userId))
     .then((rec) => {
@@ -87,7 +85,6 @@ router.get("/getBookmarks", async (req, res) => {
     })
     .catch((error) => {
       console.error(error);
-      Q;
     });
 });
 

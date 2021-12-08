@@ -35,12 +35,12 @@ router.get("/search", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     let titleTMDB = await axios.get(
-        "https://api.themoviedb.org/3/movie/"
-        +req.params.id
-        +"?api_key=" +
+      "https://api.themoviedb.org/3/movie/" +
+        req.params.id +
+        "?api_key=" +
         config.keys.tmdb
     );
-    let title = titleTMDB.data
+    let title = titleTMDB.data;
 
     const result = {
       id: title.id,
