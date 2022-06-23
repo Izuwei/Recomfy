@@ -61,9 +61,11 @@ Licensed under the MIT license - see [LICENSE](https://github.com/Izuwei/recomfy
 
 ## Screenshots
 
-<img src="./screenshots/homepage.png" height="400" width="190">
-<img src="./screenshots/recommendations.png" height="400" width="190">
-<img src="./screenshots/search.png" height="400" width="190">
-<img src="./screenshots/details.png" height="400" width="190">
-<img src="./screenshots/dark_theme.png" height="400" width="190">
-<img src="./screenshots/yellow_theme.png" height="400" width="190">
+<p float="left">
+    <img src="./screenshots/homepage.PNG" height="465" width="220">
+    <img src="./screenshots/recommendations.PNG" height="465" width="220">
+    <img src="./screenshots/search.PNG" height="465" width="220">
+    <img src="./screenshots/details.PNG" height="465" width="220">
+    <img src="./screenshots/dark_theme.PNG" height="465" width="220">
+    <img src="./screenshots/yellow_theme.PNG" height="465" width="220">
+</p>
